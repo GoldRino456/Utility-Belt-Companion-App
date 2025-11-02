@@ -1,25 +1,27 @@
 import localforage from 'localforage';
 
+const localDbName = 'UtilityBeltCompanionApp';
+
 export const collectionStore = localforage.createInstance({
-    name: 'UtilityBeltCompanionApp',
+    name: localDbName,
     storeName: 'collection',
     description: 'Owned products'
 });
 
 export const gamesStore = localforage.createInstance({
-    name: 'UtilityBeltCompanionApp',
+    name: localDbName,
     storeName: 'games',
     description: 'Game log entries'
 });
 
 export const achievementsStore = localforage.createInstance({
-    name: 'UtilityBeltCompanionApp',
+    name: localDbName,
     storeName: 'achievements',
     description: 'Achievement progress'
 });
 
 export const settingsStore = localforage.createInstance({
-    name: 'UtilityBeltCompanionApp',
+    name: localDbName,
     storeName: 'collection',
     description: 'User settings'
 });
