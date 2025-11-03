@@ -1,7 +1,7 @@
 import { CollectionItem } from '../../types';
 import { collectionStore, StorageError } from './config';
 
-export async function GetCollection(): Promise<CollectionItem[]> {
+export async function getCollection(): Promise<CollectionItem[]> {
     try {
         const allCollectionItems: CollectionItem[] = [];
         await collectionStore.iterate((item: CollectionItem) => allCollectionItems.push(item));
@@ -11,6 +11,25 @@ export async function GetCollection(): Promise<CollectionItem[]> {
 
     catch (error) {
         throw new StorageError('Failed to retrieve collection.', 'read', error);
+    }
+}
+
+export async function clearCollection() {
+    try {
+        await collectionStore.clear();
+    }
+    catch (error) {
+        throw new StorageError('Failed to clear collection.', 'delete', error);
+    }
+}
+
+export async function saveCollection(collection: CollectionItem[]) {
+    try {
+        for (const elem of collection) {
+            await collectionStore.setItem(elem.productId, elem);
+        }
+    } catch (error) {
+        throw new StorageError('Failed to save collection.', 'write', error);
     }
 }
 

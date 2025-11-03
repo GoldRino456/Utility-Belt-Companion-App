@@ -13,6 +13,15 @@ export async function getAllAchievements(): Promise<Achievement[]> {
     }
 }
 
+export async function clearAchievements() {
+    try {
+        await achievementsStore.clear();
+    }
+    catch (error) {
+        throw new StorageError('Failed to clear achievement records.', 'delete', error);
+    }
+}
+
 export async function getAchievementById(id: string): Promise<Achievement> {
     try {
         const existingAchievement = await achievementsStore.getItem<Achievement>(id);
@@ -25,6 +34,16 @@ export async function getAchievementById(id: string): Promise<Achievement> {
     }
     catch (error) {
         throw new StorageError(`Failed to retrieve achievement data with id ${id}.`, 'read', error);
+    }
+}
+
+export async function saveAchievements(achievements: Achievement[]) {
+    try {
+        for (const elem of achievements) {
+            await achievementsStore.setItem(elem.id, elem);
+        }
+    } catch (error) {
+        throw new StorageError('Failed to save achievements.', 'write', error);
     }
 }
 

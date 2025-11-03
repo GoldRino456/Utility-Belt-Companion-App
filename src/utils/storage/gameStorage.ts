@@ -13,6 +13,25 @@ export async function getAllGames(): Promise<GameLog[]> {
     }
 }
 
+export async function saveGames(games: GameLog[]) {
+    try {
+        for (const elem of games) {
+            await gamesStore.setItem(elem.id, elem);
+        }
+    } catch (error) {
+        throw new StorageError('Failed to save game logs.', 'write', error);
+    }
+}
+
+export async function clearGames() {
+    try {
+        await gamesStore.clear();
+    }
+    catch (error) {
+        throw new StorageError('Failed to clear game logs.', 'delete', error);
+    }
+}
+
 export async function getGameById(id: string): Promise<GameLog> {
     try {
         const existingGame = await gamesStore.getItem<GameLog>(id);
