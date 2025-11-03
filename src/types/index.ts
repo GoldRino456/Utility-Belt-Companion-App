@@ -59,7 +59,7 @@ export interface Hero {
 
 export interface Villain {
     name: string;
-    requiredSets?: string[];
+    requiredSets: string[];
     recommendedSets?: string[];
 }
 
@@ -92,8 +92,8 @@ export interface DifficultyConfig {
 export interface Player {
     playerName?: string;
     hero: Hero;
-    aspect: AspectType;
-    nemesisEncountered: boolean;
+    aspects: AspectType[];
+    nemesisEncountered?: boolean;
 }
 
 export interface GameLog {
@@ -104,7 +104,7 @@ export interface GameLog {
     difficulty: DifficultyConfig;
     requiredSets: string[];
     additionalSets: string[];
-    result: GameResult;
+    result?: GameResult;
     notes?: string;
 }
 

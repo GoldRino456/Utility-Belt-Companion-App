@@ -6,6 +6,7 @@ export {
 //Collections
 export {
     getCollection,
+    saveCollection,
     clearCollection,
     AddItemToCollection,
     RemoveItemFromCollection
@@ -14,6 +15,7 @@ export {
 //Game Log
 export {
     getAllGames,
+    saveGames,
     clearGames,
     getGameById,
     addNewGame,
@@ -24,6 +26,7 @@ export {
 //Achievements
 export {
     getAllAchievements,
+    saveAchievements,
     clearAchievements,
     getAchievementById,
     addAchievement,
