@@ -78,7 +78,6 @@ export interface Product {
 
 export interface CollectionItem {
     productId: string;
-    owned: boolean;
 }
 
 // ============================================================================
