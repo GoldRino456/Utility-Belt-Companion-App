@@ -1,3 +1,5 @@
+export { GetColorMapForAspect } from '../types/colorMaps';
+
 // ============================================================================
 // ENUMS
 // ============================================================================
@@ -16,6 +18,15 @@ export enum AspectType {
     PROTECTION = 'Protection',
     POOL = "'Pool",
     BASIC = 'Basic'
+}
+
+export enum AspectColorClasses {
+    AGGRESSION = 'bg-red-100 text-red-700',
+    JUSTICE = 'bg-yellow-100 text-yellow-700',
+    LEADERSHIP = 'bg-sky-100 text-sky-700',
+    PROTECTION = 'bg-green-100 text-green-700',
+    POOL = "bg-pink-100 text-pink-700",
+    BASIC = 'bg-slate-100 text-slate-700'
 }
 
 export enum StandardSet {

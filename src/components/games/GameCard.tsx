@@ -1,4 +1,4 @@
-import { GameLog, GameResult } from '../../types';
+import { GetColorMapForAspect, GameLog, GameResult } from '../../types';
 interface GameCardProperties {
     game: GameLog;
     onEdit: (game: GameLog) => void;
@@ -47,20 +47,29 @@ function GameCard({ game, onEdit, onDelete }: GameCardProperties) {
 
                     {/* Players */}
                     <div className="mb-3">
-                        <h4 className="text-sm font-semibold text-gray-700 mb-1">Players:</h4>
-                        <div className="space-y-1">
+                        <h4 className="text-sm font-semibold text-gray-700 mb-1">Heroes:</h4>
+                        <div className="ml-4 space-y-1">
                             {game.players.map((player, idx) => (
                                 <div key={idx} className="text-sm text-gray-600">
                                     <span className="font-medium">{player.hero.name}</span>
                                     {player.hero.alterEgo && (
                                         <span className="text-gray-400 text-xs"> ({player.hero.alterEgo})</span>
                                     )}
-                                    <span className="text-gray-500"> - {player.aspects.join(' + ')}</span>
                                     {player.playerName && (
                                         <span className="text-gray-400"> - {player.playerName}</span>
                                     )}
+                                    <br></br>
+                                    {player.aspects.map((aspect, aIdx) => (
+                                        <span
+                                            key={aIdx}
+                                            className={`px-2 py-0.5 rounded text-xs ${GetColorMapForAspect(aspect)
+                                                }`}
+                                        >
+                                            {aspect}
+                                        </span>
+                                    ))}
                                     {player.nemesisEncountered && (
-                                        <span className="ml-2 text-purple-600">(Attacked by Nemesis: {player.hero.nemesis}!)</span>
+                                        <span className="ml-2 text-purple-600">({player.hero.nemesis} Interfered!)</span>
                                     )}
                                 </div>
                             ))}
@@ -70,7 +79,7 @@ function GameCard({ game, onEdit, onDelete }: GameCardProperties) {
                     {/* Villain */}
                     <div className="mb-3">
                         <h4 className="text-sm font-semibold text-gray-700 mb-1">Villain:</h4>
-                        <div className="text-sm text-gray-600">
+                        <div className="ml-4 text-sm text-gray-600">
                             {game.villain.name}
                             <span className="text-gray-500 ml-2">
                                 ({game.difficulty.standardSet}
@@ -83,7 +92,7 @@ function GameCard({ game, onEdit, onDelete }: GameCardProperties) {
                     {(game.requiredSets.length > 0 || game.additionalSets.length > 0) && (
                         <div className="mb-3">
                             <h4 className="text-sm font-semibold text-gray-700 mb-1">Encounter Sets:</h4>
-                            <div className="text-sm text-gray-600">
+                            <div className="ml-4 text-sm text-gray-600">
                                 <span className="font-medium">Required:</span> {game.requiredSets.join(', ')}
                                 {game.additionalSets.length > 0 && (
                                     <>

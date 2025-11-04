@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Product } from '../../types';
+import { AspectType, GetColorMapForAspect, Product } from '../../types';
 
 interface ProductCardProperties {
     product: Product;
@@ -82,22 +82,32 @@ function ProductCard({ product, isOwned, onToggleOwnership }: ProductCardPropert
                             {product.heroes.length > 0 && (
                                 <div>
                                     <h4 className="font-semibold text-gray-700 mb-1">Heroes:</h4>
-                                    <div className="space-y-1">
+                                    <div className="ml-4 space-y-1">
                                         {product.heroes.map((hero, idx) => (
                                             <div key={idx} className="text-gray-600">
                                                 <span className="font-medium">{hero.name}</span>
                                                 {hero.alterEgo && (
                                                     <span className="text-gray-400 text-xs"> ({hero.alterEgo})</span>
                                                 )}
-                                                <span className="text-gray-500"> (Nemesis: {hero.nemesis})</span>
+                                                <br></br>
+                                                <span className="ml-4">Nemesis: {
+                                                    <span className="px-2 py-0.5 rounded text-xs text-red-700">
+                                                        {hero.nemesis}
+                                                    </span>
+                                                }
+                                                </span>
                                                 {hero.prebuiltAspects && hero.prebuiltAspects.length > 0 && (
                                                     <div className="ml-4 mt-0.5 flex flex-wrap gap-1">
+                                                        Prebuilt Deck Aspects: 
                                                         {hero.prebuiltAspects.map((aspect, aIdx) => (
                                                             <span
                                                                 key={aIdx}
-                                                                className="px-2 py-0.5 rounded text-xs bg-purple-100 text-purple-700"
+                                                                className={`px-2 py-0.5 rounded text-xs ${
+                                                                    GetColorMapForAspect(aspect)
+                                                                }`}
                                                             >
                                                                 {aspect}
+                                                                
                                                             </span>
                                                         ))}
                                                     </div>
@@ -112,12 +122,12 @@ function ProductCard({ product, isOwned, onToggleOwnership }: ProductCardPropert
                             {product.villains.length > 0 && (
                                 <div>
                                     <h4 className="font-semibold text-gray-700 mb-1">Villains:</h4>
-                                    <div className="space-y-1">
+                                    <div className="ml-4 space-y-1">
                                         {product.villains.map((villain, idx) => (
                                             <div key={idx} className="text-gray-600">
                                                 <span className="font-medium">{villain.name}</span>
                                                 <div className="ml-4 text-xs text-gray-500">
-                                                    Required: {villain.requiredSets.join(', ')}
+                                                    Required Sets: {villain.requiredSets.join(', ')}
                                                 </div>
                                             </div>
                                         ))}
@@ -129,7 +139,7 @@ function ProductCard({ product, isOwned, onToggleOwnership }: ProductCardPropert
                             {product.modularSets.length > 0 && (
                                 <div>
                                     <h4 className="font-semibold text-gray-700 mb-1">Modular Encounter Sets:</h4>
-                                    <div className="text-gray-600">
+                                    <div className="ml-4 text-gray-600">
                                         {product.modularSets.join(', ')}
                                     </div>
                                 </div>
