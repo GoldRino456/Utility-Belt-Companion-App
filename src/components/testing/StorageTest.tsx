@@ -1,34 +1,25 @@
 import { useState } from 'react';
-import { Achievement, AchievementRequirement, AchievementCategory, CollectionItem, GameLog, GameResult, AspectType, StandardSet, ExpertSet } from '../../types';
+import { AchievementCategory, CollectionItem, GameLog, GameResult, AspectType, StandardSet, ExpertSet } from '../../types';
 import {
     getCollection, //Collection
     saveCollection,
-    clearCollection,
     AddItemToCollection,
     RemoveItemFromCollection,
     getAllGames, //Game Logs
-    clearGames,
-    saveGames,
     getGameById,
     addNewGame,
     updateExistingGame,
     deleteGame,
     getAllAchievements, //Achievements
-    clearAchievements,
     getAchievementById,
-    saveAchievements,
     addAchievement,
     updateAchievement,
     deleteAchievement,
     getSettings, //Settings
     saveSettings,
     updateSettings,
-    resetSettings,
     exportAllData, //Export / Imports
-    importData,
-    clearAllData,
-    downloadExportFile,
-    readImportFile
+    clearAllData
 } from '../../utils/storage';
 
 function StorageTest() {
@@ -169,7 +160,7 @@ function StorageTest() {
                 notes: 'Nvm actually won this one, my b.'
             };
 
-            const updatedRecord = await updateExistingGame(initialGameId, updates);
+            await updateExistingGame(initialGameId, updates);
             log('SUCCESS: Updated game with ID: ' + initialGameId);
 
             //Remove Game

@@ -2,7 +2,6 @@ import { useState, useMemo } from 'react';
 import { useCollection } from '../hooks/useCollection';
 import ProductCard from '../components/collection/ProductCard';
 import { ProductType } from '../types';
-import { products } from '../data/products';
 
 type SortOption = 'name' | 'date' | 'type';
 

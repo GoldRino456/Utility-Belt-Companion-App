@@ -4,7 +4,9 @@ import { achievementsStore, StorageError } from './config';
 export async function getAllAchievements(): Promise<Achievement[]> {
     try {
         const allAchievements: Achievement[] = [];
-        await achievementsStore.iterate((achievement: Achievement) => allAchievements.push(achievement));
+        await achievementsStore.iterate(function(value) {
+                    allAchievements.push(value as Achievement);
+                });
 
         return allAchievements;
     }

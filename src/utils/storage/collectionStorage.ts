@@ -4,7 +4,9 @@ import { collectionStore, StorageError } from './config';
 export async function getCollection(): Promise<CollectionItem[]> {
     try {
         const allCollectionItems: CollectionItem[] = [];
-        await collectionStore.iterate((item: CollectionItem) => allCollectionItems.push(item));
+        await collectionStore.iterate(function(value) {
+            allCollectionItems.push(value as CollectionItem);
+        });
 
         return allCollectionItems;
     }

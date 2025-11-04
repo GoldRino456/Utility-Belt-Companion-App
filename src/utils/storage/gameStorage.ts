@@ -4,7 +4,9 @@ import { gamesStore, generateId, StorageError } from './config';
 export async function getAllGames(): Promise<GameLog[]> {
     try {
         const allGames: GameLog[] = [];
-        await gamesStore.iterate((gameLog: GameLog) => allGames.push(gameLog));
+        await gamesStore.iterate(function(value) {
+                    allGames.push(value as GameLog);
+                });
 
         return allGames;
     }

@@ -43,7 +43,7 @@ export function useCollection(): UseCollectionReturn {
         try {
             setError(null);
 
-            if (isProductOwned(productId)) {
+            if (!isProductOwned(productId)) {
                 await AddItemToCollection({ productId });
             }
             else {
