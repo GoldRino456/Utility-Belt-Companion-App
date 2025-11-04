@@ -29,7 +29,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
     const ownedVillains = ownedProducts.flatMap(p => p.villains.map(v => v.name));
     const allVillains = allProducts.flatMap(p => p.villains.map(v => v.name));
     const ownedModularSets = ownedProducts.flatMap(p => p.modularSets);
-    const availableAspects = getAllAspects();
+    const availableAspects = ownedProducts.flatMap(p => p.aspects);
 
     const ownedStandardSets = [
         StandardSet.NONE,
@@ -102,6 +102,19 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
         }
     };
 
+    const toggleAvailableAspect = (player: Player, index: number, aspect: AspectType) => {
+        if (player.aspects.some(a => a === aspect)) {
+            const newAspects = player.aspects.filter(a => a !== aspect);
+            updatePlayer(index, 'aspects', newAspects);
+            return;
+        }
+        else {
+            const newAspects = [...player.aspects, aspect];
+            updatePlayer(index, 'aspects', newAspects);
+            return;
+        }
+    }
+
     const requiredSets = villain ? (villain.requiredSets || []) : [];
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -143,288 +156,294 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 space-y-6">
-      <h3 className="text-xl font-bold text-gray-800">
-        {existingGame ? 'Edit Game' : 'Add New Game'}
-      </h3>
+      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-6 space-y-6">
+          <h3 className="text-xl font-bold text-gray-800">
+              {existingGame ? 'Edit Game' : 'Add New Game'}
+          </h3>
 
-      {/* Date/Time */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Date & Time
-        </label>
-        <input
-          type="datetime-local"
-          value={dateTime}
-          onChange={(e) => setDateTime(e.target.value)}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        />
-      </div>
-
-      {/* Player Count */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Number of Players
-        </label>
-        <select
-          value={playerCount}
-          onChange={(e) => setPlayerCount(Number(e.target.value))}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          {[1, 2, 3, 4].map(n => (
-            <option key={n} value={n}>{n} Player{n > 1 ? 's' : ''}</option>
-          ))}
-        </select>
-      </div>
-
-      {/* Players */}
-      <div className="space-y-4">
-        <h4 className="font-semibold text-gray-800">Players</h4>
-        {players.map((player, index) => (
-          <div key={index} className="p-4 border border-gray-200 rounded-md space-y-3">
-            <h5 className="font-medium text-gray-700">Player {index + 1}</h5>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {/* Player Name */}
-              <div>
-                <label className="block text-sm text-gray-600 mb-1">
-                  Name (optional)
-                </label>
-                <input
-                  type="text"
-                  value={player.playerName}
-                  onChange={(e) => updatePlayer(index, 'playerName', e.target.value)}
-                  placeholder={`Player ${index + 1}`}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              {/* Hero */}
-              <div>
-                <label className="block text-sm text-gray-600 mb-1">
-                  Hero *
-                </label>
-                <select
-                  value={player.hero.name}
-                  onChange={(e) => updatePlayer(index, 'hero', e.target.value)}
+          {/* Date/Time */}
+          <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Date & Time
+              </label>
+              <input
+                  type="datetime-local"
+                  value={dateTime}
+                  onChange={(e) => setDateTime(e.target.value)}
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                   required
-                >
-                  <option value="">Select Hero</option>
-                  <optgroup label="Owned Heroes">
-                    {ownedHeroes.map(hero => (
-                      <option key={hero.name} value={hero.name}>{hero.name}</option>
-                    ))}
-                  </optgroup>
-                  {allHeroes.filter(h => !ownedHeroes.some(oh => oh.name === h.name)).length > 0 && (
-                    <optgroup label="Other Heroes">
-                      {allHeroes.filter(h => !ownedHeroes.some(oh => oh.name === h.name)).map(hero => (
-                        <option key={hero.name} value={hero.name} className="text-gray-400">{hero.name}</option>
-                      ))}
-                    </optgroup>
-                  )}
-                </select>
-                {player.hero.name && (
-                  <p className="text-xs text-gray-500 mt-1">
-                    Nemesis: {player.hero.nemesis}
-                  </p>
-                )}
-              </div>
+              />
+          </div>
 
-              {/* Aspect */}
-              <div>
-                <label className="block text-sm text-gray-600 mb-1">
-                  Aspect *
-                </label>
-                <select
-                  value={player.aspect}
-                  onChange={(e) => updatePlayer(index, 'aspect', e.target.value as AspectType)}
+          {/* Player Count */}
+          <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Number of Players
+              </label>
+              <select
+                  value={playerCount}
+                  onChange={(e) => setPlayerCount(Number(e.target.value))}
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                >
-                  {availableAspects.map(aspect => (
-                    <option key={aspect} value={aspect}>{aspect}</option>
+              >
+                  {[1, 2, 3, 4].map(n => (
+                      <option key={n} value={n}>{n} Player{n > 1 ? 's' : ''}</option>
                   ))}
-                </select>
-              </div>
-
-              {/* Nemesis Encountered */}
-              <div className="flex items-center">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={player.nemesisEncountered}
-                    onChange={(e) => updatePlayer(index, 'nemesisEncountered', e.target.checked)}
-                    className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-700">Nemesis encountered</span>
-                </label>
-              </div>
-            </div>
+              </select>
           </div>
-        ))}
-      </div>
 
-      {/* Villain */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Villain *
-        </label>
-        <select
-          value={villain}
-          onChange={(e) => setVillain(e.target.value)}
-          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          required
-        >
-          <option value="">Select Villain</option>
-          <optgroup label="Owned Villains">
-            {ownedVillains.map(v => (
-              <option key={v} value={v}>{v}</option>
-            ))}
-          </optgroup>
-          {allVillains.filter(v => !ownedVillains.includes(v)).length > 0 && (
-            <optgroup label="Other Villains">
-              {allVillains.filter(v => !ownedVillains.includes(v)).map(v => (
-                <option key={v} value={v} className="text-gray-400">{v}</option>
+          {/* Players */}
+          <div className="space-y-4">
+              <h4 className="font-semibold text-gray-800">Players</h4>
+              {players.map((player, index) => (
+                  <div key={index} className="p-4 border border-gray-200 rounded-md space-y-3">
+                      <h5 className="font-medium text-gray-700">Player {index + 1}</h5>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {/* Player Name */}
+                          <div>
+                              <label className="block text-sm text-gray-600 mb-1">
+                                  Name (optional)
+                              </label>
+                              <input
+                                  type="text"
+                                  value={player.playerName}
+                                  onChange={(e) => updatePlayer(index, 'playerName', e.target.value)}
+                                  placeholder={`Player ${index + 1}`}
+                                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              />
+                          </div>
+
+                          {/* Hero */}
+                          <div>
+                              <label className="block text-sm text-gray-600 mb-1">
+                                  Hero *
+                              </label>
+                              <select
+                                  value={player.hero.name}
+                                  onChange={(e) => updatePlayer(index, 'hero', e.target.value)}
+                                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                  required
+                              >
+                                  <option value="">Select Hero</option>
+                                  <optgroup label="Owned Heroes">
+                                      {ownedHeroes.map(hero => (
+                                          <option key={hero.name} value={hero.name}>{hero.name}</option>
+                                      ))}
+                                  </optgroup>
+                                  {allHeroes.filter(h => !ownedHeroes.some(oh => oh.name === h.name)).length > 0 && (
+                                      <optgroup label="Other Heroes">
+                                          {allHeroes.filter(h => !ownedHeroes.some(oh => oh.name === h.name)).map(hero => (
+                                              <option key={hero.name} value={hero.name} className="text-gray-400">{hero.name}</option>
+                                          ))}
+                                      </optgroup>
+                                  )}
+                              </select>
+                              {player.hero.name && (
+                                  <p className="text-xs text-gray-500 mt-1">
+                                      Nemesis: {player.hero.nemesis}
+                                  </p>
+                              )}
+                          </div>
+
+                          {/* Aspects */}
+                          {availableAspects.length > 0 && (
+                              <div>
+                                  <label className="block text-sm text-gray-600 mb-1">
+                                      Aspects *
+                                  </label>
+                                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-48 overflow-y-auto p-2 border border-gray-300 rounded-md">
+                                      {availableAspects
+                                          .map(set => (
+                                              <label key={set} className="flex items-center gap-2 cursor-pointer text-sm">
+                                                  <input
+                                                      type="checkbox"
+                                                      checked={player.aspects.includes(set)}
+                                                      onChange={() => toggleAvailableAspect(player, index, set)}
+                                                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                                  />
+                                                  <span className="text-gray-700">{set}</span>
+                                              </label>
+                                          ))}
+                                  </div>
+                              </div>
+                          )}
+
+                          {/* Nemesis Encountered */}
+                          <div className="flex items-center">
+                              <label className="flex items-center gap-2 cursor-pointer">
+                                  <input
+                                      type="checkbox"
+                                      checked={player.nemesisEncountered}
+                                      onChange={(e) => updatePlayer(index, 'nemesisEncountered', e.target.checked)}
+                                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                  />
+                                  <span className="text-sm text-gray-700">Nemesis encountered</span>
+                              </label>
+                          </div>
+                      </div>
+                  </div>
               ))}
-            </optgroup>
+          </div>
+
+          {/* Villain */}
+          <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Villain *
+              </label>
+              <select
+                  value={villain?.name}
+                  onChange={(e) => setVillain(getVillainByName(e.target.value)?.villain)}
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  required
+              >
+                  <option value="">Select Villain</option>
+                  <optgroup label="Owned Villains">
+                      {ownedVillains.map(v => (
+                          <option key={v} value={v}>{v}</option>
+                      ))}
+                  </optgroup>
+                  {allVillains.filter(v => !ownedVillains.includes(v)).length > 0 && (
+                      <optgroup label="Other Villains">
+                          {allVillains.filter(v => !ownedVillains.includes(v)).map(v => (
+                              <option key={v} value={v} className="text-gray-400">{v}</option>
+                          ))}
+                      </optgroup>
+                  )}
+              </select>
+          </div>
+
+          {/* Difficulty */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Standard Set
+                  </label>
+                  <select
+                      value={standardSet}
+                      onChange={(e) => setStandardSet(e.target.value as StandardSet)}
+                      className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                      {ownedStandardSets.map(set => (
+                          <option key={set} value={set}>{set}</option>
+                      ))}
+                  </select>
+              </div>
+              <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Expert Set
+                  </label>
+                  <select
+                      value={expertSet}
+                      onChange={(e) => setExpertSet(e.target.value as ExpertSet)}
+                      className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                      {ownedExpertSets.map(set => (
+                          <option key={set} value={set}>{set}</option>
+                      ))}
+                  </select>
+              </div>
+          </div>
+
+          {/* Required Sets (Read-only) */}
+          {requiredSets.length > 0 && (
+              <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Required Encounter Sets
+                  </label>
+                  <div className="p-3 bg-gray-50 border border-gray-300 rounded-md text-sm text-gray-700">
+                      {requiredSets.join(', ')}
+                  </div>
+              </div>
           )}
-        </select>
-      </div>
 
-      {/* Difficulty */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Standard Set
-          </label>
-          <select
-            value={standardSet}
-            onChange={(e) => setStandardSet(e.target.value as StandardSet)}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            {ownedStandardSets.map(set => (
-              <option key={set} value={set}>{set}</option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Expert Set
-          </label>
-          <select
-            value={expertSet}
-            onChange={(e) => setExpertSet(e.target.value as ExpertSet)}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            {ownedExpertSets.map(set => (
-              <option key={set} value={set}>{set}</option>
-            ))}
-          </select>
-        </div>
-      </div>
+          {/* Additional Sets */}
+          {ownedModularSets.length > 0 && (
+              <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Additional Modular Sets
+                  </label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-48 overflow-y-auto p-2 border border-gray-300 rounded-md">
+                      {ownedModularSets
+                          .filter(set => !requiredSets.includes(set))
+                          .map(set => (
+                              <label key={set} className="flex items-center gap-2 cursor-pointer text-sm">
+                                  <input
+                                      type="checkbox"
+                                      checked={additionalSets.includes(set)}
+                                      onChange={() => toggleAdditionalSet(set)}
+                                      className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                  />
+                                  <span className="text-gray-700">{set}</span>
+                              </label>
+                          ))}
+                  </div>
+              </div>
+          )}
 
-      {/* Required Sets (Read-only) */}
-      {requiredSets.length > 0 && (
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Required Encounter Sets
-          </label>
-          <div className="p-3 bg-gray-50 border border-gray-300 rounded-md text-sm text-gray-700">
-            {requiredSets.join(', ')}
+          {/* Result */}
+          <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Result *
+              </label>
+              <div className="flex gap-4">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                          type="radio"
+                          name="result"
+                          value={GameResult.VICTORY}
+                          checked={result === GameResult.VICTORY}
+                          onChange={(e) => setResult(e.target.value as GameResult)}
+                          className="w-4 h-4 text-green-600 focus:ring-green-500"
+                      />
+                      <span className="text-gray-700">Victory</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                          type="radio"
+                          name="result"
+                          value={GameResult.DEFEAT}
+                          checked={result === GameResult.DEFEAT}
+                          onChange={(e) => setResult(e.target.value as GameResult)}
+                          className="w-4 h-4 text-red-600 focus:ring-red-500"
+                      />
+                      <span className="text-gray-700">Defeat</span>
+                  </label>
+              </div>
           </div>
-        </div>
-      )}
 
-      {/* Additional Sets */}
-      {ownedModularSets.length > 0 && (
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Additional Modular Sets
-          </label>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-48 overflow-y-auto p-2 border border-gray-300 rounded-md">
-            {ownedModularSets
-              .filter(set => !requiredSets.includes(set))
-              .map(set => (
-                <label key={set} className="flex items-center gap-2 cursor-pointer text-sm">
-                  <input
-                    type="checkbox"
-                    checked={additionalSets.includes(set)}
-                    onChange={() => toggleAdditionalSet(set)}
-                    className="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-gray-700">{set}</span>
-                </label>
-              ))}
+          {/* Notes */}
+          <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Notes (optional)
+              </label>
+              <textarea
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  rows={3}
+                  placeholder="Any additional notes about this game..."
+                  className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
           </div>
-        </div>
-      )}
 
-      {/* Result */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Result *
-        </label>
-        <div className="flex gap-4">
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              name="result"
-              value={GameResult.VICTORY}
-              checked={result === GameResult.VICTORY}
-              onChange={(e) => setResult(e.target.value as GameResult)}
-              className="w-4 h-4 text-green-600 focus:ring-green-500"
-            />
-            <span className="text-gray-700">Victory</span>
-          </label>
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              name="result"
-              value={GameResult.DEFEAT}
-              checked={result === GameResult.DEFEAT}
-              onChange={(e) => setResult(e.target.value as GameResult)}
-              className="w-4 h-4 text-red-600 focus:ring-red-500"
-            />
-            <span className="text-gray-700">Defeat</span>
-          </label>
-        </div>
-      </div>
-
-      {/* Notes */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Notes (optional)
-        </label>
-        <textarea
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-          rows={3}
-          placeholder="Any additional notes about this game..."
-          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      {/* Action Buttons */}
-      <div className="flex gap-3 pt-4">
-        <button
-          type="submit"
-          disabled={submitting}
-          className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 font-medium"
-        >
-          {submitting ? 'Saving...' : existingGame ? 'Update Game' : 'Add Game'}
-        </button>
-        <button
-          type="button"
-          onClick={onCancel}
-          disabled={submitting}
-          className="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 disabled:bg-gray-100 font-medium"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
+          {/* Action Buttons */}
+          <div className="flex gap-3 pt-4">
+              <button
+                  type="submit"
+                  disabled={submitting}
+                  className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 font-medium"
+              >
+                  {submitting ? 'Saving...' : existingGame ? 'Update Game' : 'Add Game'}
+              </button>
+              <button
+                  type="button"
+                  onClick={onCancel}
+                  disabled={submitting}
+                  className="flex-1 bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300 disabled:bg-gray-100 font-medium"
+              >
+                  Cancel
+              </button>
+          </div>
+      </form>
   );
 }
 

@@ -86,11 +86,21 @@ function ProductCard({ product, isOwned, onToggleOwnership }: ProductCardPropert
                                         {product.heroes.map((hero, idx) => (
                                             <div key={idx} className="text-gray-600">
                                                 <span className="font-medium">{hero.name}</span>
+                                                {hero.alterEgo && (
+                                                    <span className="text-gray-400 text-xs"> ({hero.alterEgo})</span>
+                                                )}
                                                 <span className="text-gray-500"> (Nemesis: {hero.nemesis})</span>
-                                                {hero.prebuiltAspects && (
-                                                    <span className="ml-2 px-2 py-0.5 rounded text-xs bg-purple-100 text-purple-700">
-                                                        {hero.prebuiltAspects}
-                                                    </span>
+                                                {hero.prebuiltAspects && hero.prebuiltAspects.length > 0 && (
+                                                    <div className="ml-4 mt-0.5 flex flex-wrap gap-1">
+                                                        {hero.prebuiltAspects.map((aspect, aIdx) => (
+                                                            <span
+                                                                key={aIdx}
+                                                                className="px-2 py-0.5 rounded text-xs bg-purple-100 text-purple-700"
+                                                            >
+                                                                {aspect}
+                                                            </span>
+                                                        ))}
+                                                    </div>
                                                 )}
                                             </div>
                                         ))}

@@ -67,8 +67,13 @@ export const products: Product[] = [
         ],
         standardSets: [StandardSet.STANDARD],
         expertSets: [ExpertSet.EXPERT],
-        aspects: []
-    },
+        aspects: [
+            AspectType.BASIC,
+            AspectType.AGGRESSION,
+            AspectType.JUSTICE,
+            AspectType.LEADERSHIP,
+            AspectType.PROTECTION
+        ]},
 
     // ============================================================================
     // HERO PACKS
@@ -454,14 +459,7 @@ export function getAllModularSets(): string[] {
 export function getAllAspects(): AspectType[] {
     const aspectSet = new Set<AspectType>();
 
-    // Add base aspects
-    aspectSet.add(AspectType.BASIC);
-    aspectSet.add(AspectType.AGGRESSION);
-    aspectSet.add(AspectType.JUSTICE);
-    aspectSet.add(AspectType.LEADERSHIP);
-    aspectSet.add(AspectType.PROTECTION);
-
-    // Add any special aspects from products
+    // Add aspects from products
     products.forEach(product => {
         product.aspects.forEach(aspect => aspectSet.add(aspect));
     });
