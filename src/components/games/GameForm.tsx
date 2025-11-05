@@ -363,7 +363,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
                       Additional Modular Sets
                   </label>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-48 overflow-y-auto p-2 border border-gray-300 rounded-md">
-                      {ownedModularSets
+                      {ownedModularSets.sort()
                           .filter(set => !requiredSets.includes(set))
                           .map(set => (
                               <label key={set} className="flex items-center gap-2 cursor-pointer text-sm">

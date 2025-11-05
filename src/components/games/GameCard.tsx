@@ -53,19 +53,22 @@ function GameCard({ game, onEdit, onDelete }: GameCardProperties) {
                                 <div key={idx} className="text-sm text-gray-600">
                                     <span className="font-medium">{player.hero.name}</span>
                                     {player.hero.alterEgo && (
-                                        <span className="text-gray-400 text-xs"> ({player.hero.alterEgo})</span>
+                                        <span className="px-1 text-gray-400 text-xs"> ({player.hero.alterEgo})</span>
                                     )}
                                     {player.playerName && (
                                         <span className="text-gray-400"> - {player.playerName}</span>
                                     )}
                                     <br></br>
+                                    <span className="px-1 text-xs font-semibold text-gray-400">
+                                        Aspects:
+                                    </span>
                                     {player.aspects.map((aspect, aIdx) => (
-                                        <span
-                                            key={aIdx}
-                                            className={`px-2 py-0.5 rounded text-xs ${GetColorMapForAspect(aspect)
-                                                }`}
-                                        >
-                                            {aspect}
+                                        <span className="px-1">
+                                            <span
+                                                key={aIdx}
+                                                className={`px-2 py-0.5 rounded text-xs ${GetColorMapForAspect(aspect)}`}>
+                                                {aspect}
+                                            </span>
                                         </span>
                                     ))}
                                     {player.nemesisEncountered && (
@@ -81,7 +84,7 @@ function GameCard({ game, onEdit, onDelete }: GameCardProperties) {
                         <h4 className="text-sm font-semibold text-gray-700 mb-1">Villain:</h4>
                         <div className="ml-4 text-sm text-gray-600">
                             {game.villain.name}
-                            <span className="text-gray-500 ml-2">
+                            <span className="text-xs font-semibold text-gray-500 ml-1">
                                 ({game.difficulty.standardSet}
                                 {game.difficulty.expertSet !== 'None' && ` + ${game.difficulty.expertSet}`})
                             </span>
