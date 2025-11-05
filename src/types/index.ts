@@ -33,7 +33,7 @@ export enum StandardSet {
     STANDARD = 'Standard',
     STANDARD_II = 'Standard II',
     STANDARD_III = 'Standard III',
-    NONE = 'None'
+    RANDOM = 'Random Standard Set'
 }
 
 export enum ExpertSet {
@@ -221,7 +221,7 @@ export interface GeneratedScenario {
     additionalSets: string[];
     players?: Array<{
         hero: Hero;
-        aspect: AspectType;
+        aspects: AspectType[];
     }>;
 }
 

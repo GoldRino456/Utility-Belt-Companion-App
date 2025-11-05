@@ -20,7 +20,8 @@ export {
     getGameById,
     addNewGame,
     updateExistingGame,
-    deleteGame
+    deleteGame,
+    getRecentGames
 } from './gameStorage';
 
 //Achievements

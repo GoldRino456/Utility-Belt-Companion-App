@@ -32,7 +32,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
     const availableAspects = ownedProducts.flatMap(p => p.aspects);
 
     const ownedStandardSets = [
-        StandardSet.NONE,
+        StandardSet.RANDOM,
         ...new Set(ownedProducts.flatMap(p => p.standardSets))
     ];
     const ownedExpertSets = [

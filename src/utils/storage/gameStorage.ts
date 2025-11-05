@@ -93,3 +93,22 @@ export async function deleteGame(id: string): Promise<void> {
         throw new StorageError(`Failed to remove game log with Id ${id}.`, 'delete', error);
     }
 }
+
+export async function getRecentGames(numGames: number): Promise<GameLog[]> {
+    try {
+        const allGames: GameLog[] = [];
+        await gamesStore.iterate(function(value, _key, i) {
+                    allGames.push(value as GameLog);
+                    if(i >= numGames)
+                    {
+                        return 0;
+                    }
+                    
+                });
+
+        return allGames;
+    }
+    catch (error) {
+        throw new StorageError('Failed to retrieve game logs.', 'read', error);
+    }
+}
