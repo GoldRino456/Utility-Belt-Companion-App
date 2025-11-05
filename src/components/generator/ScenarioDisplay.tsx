@@ -3,7 +3,8 @@ import { GeneratedScenario, GeneratorConfig } from '../../types';
 interface ScenarioDisplayProperties {
   scenario: GeneratedScenario;
   config: GeneratorConfig;
-  onRerollAll: () => void;
+    onRerollAll: () => void;
+    onRerollHeroes: () => void;
   onRerollVillain: () => void;
   onRerollSets: () => void;
   onSaveToLog: () => void;
@@ -12,7 +13,8 @@ interface ScenarioDisplayProperties {
 function ScenarioDisplay({
   scenario,
   config,
-  onRerollAll,
+    onRerollAll,
+  onRerollHeroes,
   onRerollVillain,
   onRerollSets,
   onSaveToLog
@@ -119,7 +121,8 @@ function ScenarioDisplay({
 
       {/* Action Buttons */}
       <div className="p-6 bg-gray-50 border-t border-gray-200 space-y-3">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div className={`${(!scenario.players || scenario.players.length === 0 ? "md:grid-cols-3" : "md:grid-cols-4")}
+                grid grid-cols-1 gap-3`}>
           <button
             onClick={onRerollAll}
             className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 font-medium transition-colors"
@@ -131,6 +134,13 @@ function ScenarioDisplay({
             className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 font-medium transition-colors"
           >
             Re-roll Villain
+          </button>
+          <button
+            onClick={onRerollHeroes}
+            className={`${(!scenario.players || scenario.players.length === 0 ? "hidden" : "")}
+            px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 font-medium transition-colors`}
+          >
+            Re-roll Heroes
           </button>
           <button
             onClick={onRerollSets}

@@ -24,17 +24,30 @@ function Generator() {
     if (currentConfig) {
       handleGenerate(currentConfig);
     }
-  };
+    };
+
+    const handleRerollHeroes = () => {
+        if (currentConfig && scenario) {
+            const newScenario = generateScenario(currentConfig);
+            if (newScenario) {
+                setScenario({
+                    ...scenario,
+                    players: newScenario.players
+                });
+            }
+        }
+    }
 
   const handleRerollVillain = () => {
     if (currentConfig) {
       // Generate new scenario with same config (will get different villain due to randomness)
       const newScenario = generateScenario(currentConfig);
       if (newScenario) {
-        // Keep the same additional sets if possible
+        // Keep the same additional sets if possible and heroes
         setScenario({
-          ...newScenario,
-          additionalSets: scenario?.additionalSets || newScenario.additionalSets
+            ...newScenario,
+            additionalSets: scenario?.additionalSets || newScenario.additionalSets,
+            players: scenario?.players
         });
       }
     }
@@ -119,6 +132,7 @@ return (
               scenario={scenario}
               config={currentConfig!}
               onRerollAll={handleRerollAll}
+              onRerollHeroes={handleRerollHeroes}
               onRerollVillain={handleRerollVillain}
               onRerollSets={handleRerollSets}
               onSaveToLog={handleSaveToLog}
