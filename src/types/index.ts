@@ -208,6 +208,7 @@ export interface GeneratorConfig {
     playerCount: number;
     difficulty: DifficultyConfig;
     additionalSetCount: number;
+    matchEncounterSetNumber: boolean;
     randomizeHeroes: boolean;
     randomizeAspects: boolean;
     excludeRecentlyPlayed: boolean;

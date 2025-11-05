@@ -1,4 +1,4 @@
-import { GeneratedScenario, GeneratorConfig } from '../../types';
+import { GeneratedScenario, GeneratorConfig, GetColorMapForAspect } from '../../types';
 
 interface ScenarioDisplayProperties {
   scenario: GeneratedScenario;
@@ -107,11 +107,22 @@ function ScenarioDisplay({
                   className="p-3 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200"
                 >
                   <div className="font-semibold text-gray-900">
-                    Player {idx + 1}: {player.hero.name}
+                          Player {idx + 1}: {player.hero.name} 
+                          <span className="px-1 text-sm font-semibold text-gray-400">({player.hero.alterEgo})</span>
                   </div>
-                  <div className="text-sm text-gray-600 mt-1">
-                    Aspects: {player.aspects.join(' + ')}
-                  </div>
+                      <span className="px-2 font-semibold text-gray-500">
+                          Aspects: 
+                      </span>
+                  {player.aspects.map((aspect, aIdx) => (
+                      <span className="px-1">
+                          <span
+                              key={aIdx}
+                              className={`px-2 py-0.5 rounded text-xs ${GetColorMapForAspect(aspect)}`}>
+                              {aspect}
+                          </span>
+                      </span>
+                   ))}
+
                 </div>
               ))}
             </div>

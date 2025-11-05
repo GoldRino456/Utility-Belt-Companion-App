@@ -84,10 +84,18 @@ export function useGenerator(): UseGeneratorReturn {
       
       const additionalSets: string[] = [];
       const shuffled = [...availableAdditionalSets].sort(() => Math.random() - 0.5);
-      
-      for (let i = 0; i < Math.min(config.additionalSetCount, shuffled.length); i++) {
-        additionalSets.push(shuffled[i]);
-      }
+      let numAdditionalSets = 0;
+
+        if (config.matchEncounterSetNumber) {
+            numAdditionalSets = villain.recommendedSets ? villain.recommendedSets.length : 0;
+        }
+        else {
+            numAdditionalSets = config.additionalSetCount;
+        }
+
+        for (let i = 0; i < Math.min(numAdditionalSets, shuffled.length); i++) {
+            additionalSets.push(shuffled[i]);
+        }
 
       // Generate hero lineup if requested
       let players: Array<{ hero: Hero; aspects: AspectType[] }> | undefined;

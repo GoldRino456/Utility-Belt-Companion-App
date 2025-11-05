@@ -11,6 +11,7 @@ function GeneratorForm({ ownedProducts, onGenerate }: GeneratorFormProperties) {
   const [standardSet, setStandardSet] = useState<StandardSet>(StandardSet.STANDARD);
   const [expertSet, setExpertSet] = useState<ExpertSet>(ExpertSet.NONE);
   const [additionalSetCount, setAdditionalSetCount] = useState(0);
+  const [matchVillainSetCount, setMatchVillainSetCount] = useState(true);
   const [randomizeHeroes, setRandomizeHeroes] = useState(false);
   const [randomizeAspects, setRandomizeAspects] = useState(false);
   const [excludeRecentlyPlayed, setExcludeRecentlyPlayed] = useState(false);
@@ -33,7 +34,8 @@ function GeneratorForm({ ownedProducts, onGenerate }: GeneratorFormProperties) {
         standardSet,
         expertSet
       },
-      additionalSetCount,
+        additionalSetCount,
+      matchEncounterSetNumber: matchVillainSetCount,
       randomizeHeroes,
       randomizeAspects,
       excludeRecentlyPlayed,
@@ -118,7 +120,7 @@ function GeneratorForm({ ownedProducts, onGenerate }: GeneratorFormProperties) {
       </div>
 
       {/* Additional Modular Sets */}
-      <div>
+          <div className={`${matchVillainSetCount ? "hidden" : ""}`}>
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Additional Modular Sets
         </label>
@@ -138,6 +140,23 @@ function GeneratorForm({ ownedProducts, onGenerate }: GeneratorFormProperties) {
       {/* Randomization Options */}
       <div className="space-y-3">
         <h4 className="font-semibold text-gray-800">Randomization</h4>
+
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={matchVillainSetCount}
+            onChange={(e) => setMatchVillainSetCount(e.target.checked)}
+            className="mt-0.5 w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+          />
+          <div>
+            <span className="text-sm font-medium text-gray-700">
+             Use Default Number of Random Sets
+            </span>
+            <p className="text-xs text-gray-500">
+              Rolls a number of random modular sets based on how many are recommended for each villain.
+            </p>
+          </div>
+        </label>
         
         <label className="flex items-start gap-3 cursor-pointer">
           <input
@@ -199,7 +218,7 @@ function GeneratorForm({ ownedProducts, onGenerate }: GeneratorFormProperties) {
               )}
             </div>
             <p className="text-xs text-gray-500">
-              Avoid villains and heroes from your last {excludeCount} games
+                          Avoid rolling villains and heroes from your last {excludeRecentlyPlayed ? excludeCount : "X"} games
             </p>
           </div>
         </label>
