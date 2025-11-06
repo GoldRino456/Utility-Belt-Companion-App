@@ -63,10 +63,9 @@ function GameCard({ game, onEdit, onDelete }: GameCardProperties) {
                                     <span className="px-1 text-xs font-semibold text-gray-400">
                                         Aspects:
                                     </span>
-                                    {player.aspects.map((aspect, aIdx) => (
-                                        <span className="px-1">
+                                    {player.aspects.sort().map((aspect, aIdx) => (
+                                        <span key={aIdx} className="px-1">
                                             <span
-                                                key={aIdx}
                                                 className={`px-2 py-0.5 rounded text-xs ${GetColorMapForAspect(aspect)}`}>
                                                 {aspect}
                                             </span>
