@@ -44,7 +44,8 @@ export enum ExpertSet {
 
 export enum GameResult {
     VICTORY = 'Victory',
-    DEFEAT = 'Defeat'
+    DEFEAT = 'Defeat',
+    IN_PROGRESS = 'In-Progress'
 }
 
 export enum AchievementCategory {

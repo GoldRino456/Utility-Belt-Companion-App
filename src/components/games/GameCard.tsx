@@ -6,6 +6,7 @@ interface GameCardProperties {
 }
 
 function GameCard({ game, onEdit, onDelete }: GameCardProperties) {
+    const isInProgress = game.result === GameResult.IN_PROGRESS;
     const isVictory = game.result === GameResult.VICTORY;
     const formattedDate = new Date(game.dateTime).toLocaleDateString('en-US', {
         year: 'numeric',
@@ -24,7 +25,7 @@ function GameCard({ game, onEdit, onDelete }: GameCardProperties) {
     const anyNemesisEncountered = game.players.some(p => p.nemesisEncountered);
 
     return (
-        <div className={`border-l-4 rounded-lg shadow p-4 ${isVictory ? 'border-green-500 bg-green-50' : 'border-red-500 bg-red-50'
+        <div className={`border-l-4 rounded-lg shadow p-4 ${isVictory ? 'border-green-500 bg-green-50' : (isInProgress ? 'border-purple-500 bg-purple-50' : 'border-red-500 bg-red-50')
             }`}>
             <div className="flex items-start justify-between gap-4">
                 {/* Main Content */}
@@ -33,7 +34,7 @@ function GameCard({ game, onEdit, onDelete }: GameCardProperties) {
                     <div className="flex items-center gap-3 mb-2">
                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold ${isVictory
                                 ? 'bg-green-600 text-white'
-                                : 'bg-red-600 text-white'
+                            : (isInProgress ? 'bg-purple-600 text-white' : 'bg-red-600 text-white')
                             }`}>
                             {game.result}
                         </span>

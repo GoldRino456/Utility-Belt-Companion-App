@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { GameLog, Player, Product, AspectType, StandardSet, ExpertSet, GameResult, Hero, Villain } from '../../types';
+import { GameLog, Player, Product, AspectType, StandardSet, ExpertSet, GameResult, Hero, Villain, GeneratedScenario } from '../../types';
 import { getVillainByName, getAllAspects, getHeroByName } from '../../data/products';
 
 interface GameFormProperties {
@@ -8,9 +8,10 @@ interface GameFormProperties {
     onSubmit: (game: Omit<GameLog, 'id'>) => Promise<void>;
     onCancel: () => void;
     existingGame?: GameLog;
+    scenario?: GeneratedScenario;
 }
 
-function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame }: GameFormProperties) {
+function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame, scenario}: GameFormProperties ) {
     const [dateTime, setDateTime] = useState('');
     const [playerCount, setPlayerCount] = useState(1);
     const [players, setPlayers] = useState<Player[]>([
@@ -20,7 +21,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
     const [standardSet, setStandardSet] = useState<StandardSet>(StandardSet.STANDARD);
     const [expertSet, setExpertSet] = useState<ExpertSet>(ExpertSet.NONE);
     const [additionalSets, setAdditionalSets] = useState<string[]>([]);
-    const [result, setResult] = useState<GameResult | undefined>();
+    const [result, setResult] = useState<GameResult>(GameResult.IN_PROGRESS);
     const [notes, setNotes] = useState('');
     const [submitting, setSubmitting] = useState(false);
 
@@ -51,7 +52,19 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
             setAdditionalSets(existingGame.additionalSets);
             setResult(existingGame.result);
             setNotes(existingGame.notes || '');
-        } 
+        }
+        else if (!!scenario) {
+            setDateTime(new Date().toISOString().slice(0, 16));
+            setVillain(scenario.villain);
+            setStandardSet(scenario.difficulty.standardSet);
+            setExpertSet(scenario.difficulty.expertSet);
+            setAdditionalSets(scenario.additionalSets);
+
+            if (scenario.players) {
+                setPlayerCount(scenario.players.length);
+                setPlayers(scenario.players);
+            }
+        }
         else {
         // Default to current date/time for new games
         setDateTime(new Date().toISOString().slice(0, 16));
@@ -128,7 +141,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
     if (players.some(p => !p.hero.name)) {
       alert('Please select a hero for each player');
       return;
-    }
+        }
 
     setSubmitting(true);
     try {
@@ -383,9 +396,20 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
           {/* Result */}
           <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Result *
+                  Result
               </label>
               <div className="flex gap-4">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                          type="radio"
+                          name="result"
+                          value={GameResult.IN_PROGRESS}
+                          checked={result === GameResult.IN_PROGRESS}
+                          onChange={(e) => setResult(e.target.value as GameResult)}
+                          className="w-4 h-4 text-purple-600 focus:ring-purple-500"
+                      />
+                      <span className="text-gray-700">In-Progress</span>
+                  </label>
                   <label className="flex items-center gap-2 cursor-pointer">
                       <input
                           type="radio"

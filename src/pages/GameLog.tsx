@@ -1,8 +1,9 @@
 import { useState, useMemo } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useGameLog } from '../hooks/useGameLog';
 import GameForm from '../components/games/GameForm';
 import GameCard from '../components/games/GameCard';
-import { GameLog as GameLogType, GameResult, AspectType } from '../types';
+import { GameLog as GameLogType, GameResult, AspectType, GeneratedScenario } from '../types';
 
 function GameLog() {
     const {
@@ -16,7 +17,9 @@ function GameLog() {
         error
     } = useGameLog();
 
-    const [showForm, setShowForm] = useState(false);
+    const location = useLocation();
+    const [generatedScenario, setGeneratedScenario] = useState<GeneratedScenario | undefined>(location.state?.generatedScenario as GeneratedScenario);
+    const [showForm, setShowForm] = useState(!!generatedScenario);
     const [editingGame, setEditingGame] = useState<GameLogType | undefined>();
 
     // Filters
@@ -100,9 +103,10 @@ function GameLog() {
 
     const stats = useMemo(() => {
         const total = games.length;
+        const inProgressGames = games.filter(g => g.result === GameResult.IN_PROGRESS).length; //Used to ensure pending games don't affect stats yet.
         const victories = games.filter(g => g.result === GameResult.VICTORY).length;
-        const defeats = total - victories;
-        const winRate = total > 0 ? ((victories / total) * 100).toFixed(1) : '0';
+        const defeats = total - victories - inProgressGames;
+        const winRate = total > 0 ? ((victories / (total - inProgressGames)) * 100).toFixed(1) : '0';
 
         return { total, victories, defeats, winRate };
     }, [games]);
@@ -114,6 +118,7 @@ function GameLog() {
             } else {
                 await addNewGameLog(game);
             }
+            setGeneratedScenario(undefined);
             setShowForm(false);
             setEditingGame(undefined);
         } catch (error) {
@@ -127,6 +132,7 @@ function GameLog() {
     };
 
     const handleCancelForm = () => {
+        setGeneratedScenario(undefined);
         setShowForm(false);
         setEditingGame(undefined);
     };
@@ -202,6 +208,7 @@ function GameLog() {
                         onSubmit={handleAddGame}
                         onCancel={handleCancelForm}
                         existingGame={editingGame}
+                        scenario={generatedScenario}
                     />
                 </div>
             )}
@@ -265,6 +272,7 @@ function GameLog() {
                             <option value="">All Results</option>
                             <option value={GameResult.VICTORY}>Victory</option>
                             <option value={GameResult.DEFEAT}>Defeat</option>
+                            <option value={GameResult.IN_PROGRESS}>In-Progress</option>
                         </select>
 
                         {/* Nemesis Filter */}
