@@ -36,7 +36,7 @@ export const products: Product[] = [
             },
             {
                 name: 'Black Panther',
-                alterEgo: 'T’Challa',
+                alterEgo: 'T\'Challa',
                 nemesis: 'Killmonger',
                 prebuiltAspects: [AspectType.PROTECTION]
             }
@@ -188,6 +188,367 @@ export const products: Product[] = [
         ],
         villains: [],
         modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle2-ant-man',
+        name: 'Ant-Man Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2020-11-06',
+        heroes: [
+            {
+                name: 'Ant-Man',
+                alterEgo: 'Scott Lang',
+                nemesis: 'Yellowjacket',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle2-wasp',
+        name: 'Wasp Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2021-01-22',
+        heroes: [
+            {
+                name: 'Wasp',
+                alterEgo: 'Nadia Van Dyne',
+                nemesis: 'Beetle',
+                prebuiltAspects: [AspectType.AGGRESSION]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle2-quicksilver',
+        name: 'Quicksilver Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2021-02-05',
+        heroes: [
+            {
+                name: 'Quicksilver',
+                alterEgo: 'Pietro Maximoff',
+                nemesis: 'Avalanche',
+                prebuiltAspects: [AspectType.PROTECTION]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle2-scarlet-witch',
+        name: 'Scarlet Witch Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2021-03-05',
+        heroes: [
+            {
+                name: 'Scarlet Witch',
+                alterEgo: 'Wanda Maximoff',
+                nemesis: 'Luminous',
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle3-star-lord',
+        name: 'Star-Lord Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2021-05-14',
+        heroes: [
+            {
+                name: 'Star-Lord',
+                alterEgo: 'Peter Quill',
+                nemesis: 'Mister Knife',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle3-gamora',
+        name: 'Gamora Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2021-05-14',
+        heroes: [
+            {
+                name: 'Gamora',
+                alterEgo: 'Gamora',
+                nemesis: 'Nebula',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle3-drax',
+        name: 'Drax Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2021-06-18',
+        heroes: [
+            {
+                name: 'Drax',
+                alterEgo: 'Drax',
+                nemesis: 'Yotat The Destroyer',
+                prebuiltAspects: [AspectType.PROTECTION]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle3-venom',
+        name: 'Venom Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2021-07-16',
+        heroes: [
+            {
+                name: 'Venom',
+                alterEgo: 'Flash Thompson',
+                nemesis: 'Enraged Symbiotes',
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle4-nebula',
+        name: 'Nebula Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2021-09-17',
+        heroes: [
+            {
+                name: 'Nebula',
+                alterEgo: 'Nebula',
+                nemesis: 'Gamora',
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle4-war-machine',
+        name: 'War Machine Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2021-11-12',
+        heroes: [
+            {
+                name: 'War Machine',
+                alterEgo: 'James Rhodes',
+                nemesis: 'Living Laser',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle4-valkyrie',
+        name: 'Valkyrie Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2022-01-21',
+        heroes: [
+            {
+                name: 'Valkyrie',
+                alterEgo: 'Brunnhilde',
+                nemesis: 'Enchantress',
+                prebuiltAspects: [AspectType.AGGRESSION]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle4-vison',
+        name: 'Vison Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2022-01-14',
+        heroes: [
+            {
+                name: 'Vison',
+                alterEgo: 'Vison',
+                nemesis: 'Ultron',
+                prebuiltAspects: [AspectType.PROTECTION]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle5-nova',
+        name: 'Nova Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2022-05-20',
+        heroes: [
+            {
+                name: 'Nova',
+                alterEgo: 'Sam Alexander',
+                nemesis: 'Warbringer',
+                prebuiltAspects: [AspectType.AGGRESSION]
+            }
+        ],
+        villains: [],
+        modularSets: ["Armadillo"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle5-ironheart',
+        name: 'Nova Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2022-05-20',
+        heroes: [
+            {
+                name: 'Ironheart',
+                alterEgo: 'Riri Williams',
+                nemesis: 'Lucia von Bardas',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            }
+        ],
+        villains: [],
+        modularSets: ["Zzzax"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle5-spider-ham',
+        name: 'Spider-Ham Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2022-07-15',
+        heroes: [
+            {
+                name: 'Spider-Ham',
+                alterEgo: 'Peter Porker',
+                nemesis: 'The Green Gobbler',
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [],
+        modularSets: ["The Inheritors"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle5-sp//dr',
+        name: 'SP//dr Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2022-07-15',
+        heroes: [
+            {
+                name: 'SP//dr',
+                alterEgo: 'Peni Parker',
+                nemesis: 'M.O.R.B.I.U.S.',
+                prebuiltAspects: [AspectType.PROTECTION]
+            }
+        ],
+        villains: [],
+        modularSets: ["Iron Spider's Sinister Six"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle6-cyclops',
+        name: 'Cyclops Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2022-09-30',
+        heroes: [
+            {
+                name: 'Cyclops',
+                alterEgo: 'Scott Summers',
+                nemesis: 'Mister Sinister',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle6-phoenix',
+        name: 'Phoenix Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2022-09-30',
+        heroes: [
+            {
+                name: 'Phoenix',
+                alterEgo: 'Jean Grey',
+                nemesis: 'Dark Phoenix',
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle6-wolverine',
+        name: 'Wolverine Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2022-11-11',
+        heroes: [
+            {
+                name: 'Wolverine',
+                alterEgo: 'Logan',
+                nemesis: 'Omega Red',
+                prebuiltAspects: [AspectType.AGGRESSION]
+            }
+        ],
+        villains: [],
+        modularSets: ["Deathstrike"],
         standardSets: [],
         expertSets: [],
         aspects: []
