@@ -1,0 +1,17 @@
+{
+  "updates": [
+    {
+      "version": "1.0.0",
+      "date": "2025-11-07",
+      "changes": [
+        "Initial release of The Utility Belt Companion App",
+        "Added Core Set and Cycle 1 - 5 Heroes",
+        "Collection manager with owned product tracking",
+        "Game log with multiplayer and aspect support",
+        "Random scenario generator",
+        "Statistics and win rate tracking",
+        "Import/export app data functionality"
+      ]
+    }
+  ]
+}
