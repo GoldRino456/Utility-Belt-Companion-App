@@ -73,10 +73,6 @@ export function useGenerator(): UseGeneratorReturn {
         }
       }
 
-      if (expertSet === ExpertSet.NONE && config.difficulty.expertSet === ExpertSet.NONE) {
-        // Keep as None unless user wants random
-      }
-
       // Select additional modular sets
       const availableAdditionalSets = availableModularSets.filter(
         set => !requiredSets.includes(set)
@@ -119,7 +115,7 @@ export function useGenerator(): UseGeneratorReturn {
 
           if (config.randomizeAspects) {
             // Random aspects
-            const availableAspects = getAllAspects().filter(a => a !== AspectType.BASIC);
+            const availableAspects = ownedProducts.flatMap(p => p.aspects).filter(a => a !== AspectType.BASIC);
             const aspectCount = hero.prebuiltAspects ? hero.prebuiltAspects.length : 1; // Match number of aspects on prebuilt deck
             const shuffledAspects = [...availableAspects].sort(() => Math.random() - 0.5);
             aspects = shuffledAspects.slice(0, Math.min(aspectCount, availableAspects.length));
