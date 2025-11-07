@@ -32,23 +32,65 @@ export async function exportAllData(): Promise<ExportData> {
     }
 }
 
-export async function importData(data: ExportData): Promise<void> {
+export async function importData(data: ExportData, mode: 'merge' | 'replace'): Promise<void> {
     try {
         // Validate data structure
         if (!isValidExportData(data)) {
             throw new Error('Invalid export data format');
         }
-            // Replace all data
-        await Promise.all([
-            saveCollection(data.collection),
-            saveGames(data.games),
-            saveAchievements(data.achievements),
-            saveSettings(data.settings)
-        ]);
-    
-    } catch (error) {
-        throw new StorageError('Failed to import data', 'write', error);
+        if (mode === 'replace') {
+      // Replace all data
+      await Promise.all([
+        saveCollection(data.collection),
+        saveGames(data.games),
+        saveAchievements(data.achievements),
+        saveSettings(data.settings)
+      ]);
+    } else {
+      // Merge mode: combine with existing data
+      const [currentCollection, currentGames, currentAchievements] = await Promise.all([
+        getCollection(),
+        getAllGames(),
+        getAllAchievements()
+      ]);
+
+      // Merge collections (don't duplicate product IDs)
+      const mergedCollection = [...currentCollection];
+      data.collection.forEach(newItem => {
+        const existingIndex = mergedCollection.findIndex(c => c.productId === newItem.productId);
+        if (existingIndex >= 0) {
+          mergedCollection[existingIndex] = newItem; // Update existing
+        } else {
+          mergedCollection.push(newItem); // Add new
+        }
+      });
+
+      // Merge games (don't duplicate IDs)
+      const existingGameIds = new Set(currentGames.map(g => g.id));
+      const newGames = data.games.filter(g => !existingGameIds.has(g.id));
+      const mergedGames = [...currentGames, ...newGames];
+
+      // Merge achievements (don't duplicate IDs)
+      const mergedAchievements = [...currentAchievements];
+      data.achievements.forEach(newAch => {
+        const existingIndex = mergedAchievements.findIndex(a => a.id === newAch.id);
+        if (existingIndex >= 0) {
+          mergedAchievements[existingIndex] = newAch; // Update existing
+        } else {
+          mergedAchievements.push(newAch); // Add new
+        }
+      });
+
+      // Save merged data (keep current settings in merge mode)
+      await Promise.all([
+        saveCollection(mergedCollection),
+        saveGames(mergedGames),
+        saveAchievements(mergedAchievements)
+      ]);
     }
+  } catch (error) {
+    throw new StorageError('Failed to import data', 'write', error);
+  }
 }
 
 export async function clearAllData() {

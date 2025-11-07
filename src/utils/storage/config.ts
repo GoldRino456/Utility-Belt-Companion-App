@@ -22,7 +22,7 @@ export const achievementsStore = localforage.createInstance({
 
 export const settingsStore = localforage.createInstance({
     name: localDbName,
-    storeName: 'collection',
+    storeName: 'settings',
     description: 'User settings'
 });
 
