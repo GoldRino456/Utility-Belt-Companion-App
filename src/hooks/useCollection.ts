@@ -40,20 +40,30 @@ export function useCollection(): UseCollectionReturn {
     };
 
     const toggleOwnership = async (productId: string) => {
+        const wasOwned = isProductOwned(productId);
+
+        if (wasOwned) {
+            setCollection(prev => prev.filter(c => c.productId !== productId));
+        }
+        else {
+            setCollection(prev => [...prev, { productId }]);
+        }
+
         try {
             setError(null);
 
-            if (!isProductOwned(productId)) {
-                await AddItemToCollection({ productId });
-            }
-            else {
+            if (wasOwned) {
                 await RemoveItemFromCollection(productId);
             }
+            else {
+                await AddItemToCollection({ productId });
+            }
 
-            await loadCollection();
+            
         }
         catch (error) {
             setError('Failed to update product ownership.');
+            await loadCollection();
             console.error(error);
         }
     }
