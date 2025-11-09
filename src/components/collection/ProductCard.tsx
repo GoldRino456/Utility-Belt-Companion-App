@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AspectType, GetColorMapForAspect, Product } from '../../types';
+import { GetColorMapForAspect, Product } from '../../types';
 
 interface ProductCardProperties {
     product: Product;

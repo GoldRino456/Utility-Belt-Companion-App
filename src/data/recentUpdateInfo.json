@@ -1,11 +1,11 @@
 {
   "updates": [
     {
-      "version": "1.0.0",
-      "date": "2025-11-07",
+      "version": "0.9.1",
+      "date": "2025-11-09",
       "changes": [
-        "Initial release of The Utility Belt Companion App",
-        "Added Core Set and Cycle 1 - 5 Heroes",
+        "Beta release of The Utility Belt Companion App",
+        "Added Core Set, Cycle 1 - 9 Hero Packs, Scenario Packs, and Campaign Boxes",
         "Collection manager with owned product tracking",
         "Game log with multiplayer and aspect support",
         "Random scenario generator",

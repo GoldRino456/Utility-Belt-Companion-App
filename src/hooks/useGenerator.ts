@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Product, Hero, AspectType, StandardSet, ExpertSet, GeneratedScenario, GeneratorConfig } from '../types';
-import { products, getAllAspects } from '../data/products';
-import { getCollection, getRecentGames } from '../utils/storage';
+import { Product, Hero, AspectType, StandardSet, GeneratedScenario, GeneratorConfig } from '../types';
+import { products } from '../data/products';
+import { getCollection } from '../utils/storage';
 
 interface UseGeneratorReturn {
   ownedProducts: Product[];
