@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { GameLog, GameResult } from '../types';
 import { getAllGames, getCollection } from '../utils/storage';
-import { products } from '../data/products';
 
 interface HeroStats {
     heroName: string;
@@ -24,8 +23,7 @@ interface DashboardStats {
     winRate: number;
     currentStreak: number;
     isWinStreak: boolean;
-    ownedProductCount: number;
-    totalProductCount: number;
+    heroesSentOnMission: number;
 }
 
 interface UseDashboardReturn {
@@ -76,7 +74,14 @@ export function useDashboard(): UseDashboardReturn {
         let currentStreak = 0;
         let isWinStreak = true;
 
+        //Total Heroes Sent On Mission
+        let heroesSentOnMission = 0;
+
         if (games.length > 0) {
+
+            //Calculate Number of Heroes Played Across All Games (including In-Progress)
+            games.forEach(g => heroesSentOnMission += g.players.length);
+
             // Sort by date (newest first)
             const sortedGames = [...games].filter(g => g.result !== GameResult.IN_PROGRESS)
                 .sort((a, b) => new Date(b.dateTime)
@@ -102,8 +107,7 @@ export function useDashboard(): UseDashboardReturn {
             winRate,
             currentStreak,
             isWinStreak,
-            ownedProductCount: ownedProductIds.length,
-            totalProductCount: products.length
+            heroesSentOnMission
         };
     }, [games, ownedProductIds]);
 

@@ -51,14 +51,22 @@ function Dashboard() {
 
             {/* Quick Stats */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {/* Total Games */}
+                {/* Current Streak */}
                 <div className="bg-white rounded-lg shadow p-6">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm text-gray-600 font-medium">Total Games</p>
-                            <p className="text-3xl font-bold text-gray-900 mt-1">{stats.totalGames}</p>
+                            <p className="text-sm text-gray-600 font-medium">Current Streak</p>
+                            <p className={`text-3xl font-bold mt-1 ${stats.isWinStreak ? 'text-green-600' : 'text-red-600'
+                                }`}>
+                                {stats.currentStreak > 0 ? stats.currentStreak : '—'}
+                            </p>
+                            {stats.currentStreak > 0 && (
+                                <p className="text-xs text-gray-500 mt-1">
+                                    {stats.isWinStreak ? 'wins' : 'losses'}
+                                </p>
+                            )}
                         </div>
-                        <div className="text-4xl">🎮</div>
+                        <div className="text-4xl">{stats.isWinStreak ? '🔥' : '💀'}</div>
                     </div>
                 </div>
 
@@ -76,35 +84,27 @@ function Dashboard() {
                     </div>
                 </div>
 
-                {/* Products Owned */}
+                {/* Total Games */}
                 <div className="bg-white rounded-lg shadow p-6">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm text-gray-600 font-medium">Products Owned</p>
-                            <p className="text-3xl font-bold text-gray-900 mt-1">
-                                {stats.ownedProductCount} / {stats.totalProductCount}
-                            </p>
+                            <p className="text-sm text-gray-600 font-medium">Total Games Played</p>
+                            <p className="text-3xl font-bold text-gray-900 mt-1">{stats.totalGames}</p>
                         </div>
-                        <div className="text-4xl">📦</div>
+                        <div className="text-4xl">🎮</div>
                     </div>
                 </div>
 
-                {/* Current Streak */}
+                {/* Heroes Owned */}
                 <div className="bg-white rounded-lg shadow p-6">
                     <div className="flex items-center justify-between">
                         <div>
-                            <p className="text-sm text-gray-600 font-medium">Current Streak</p>
-                            <p className={`text-3xl font-bold mt-1 ${stats.isWinStreak ? 'text-green-600' : 'text-red-600'
-                                }`}>
-                                {stats.currentStreak > 0 ? stats.currentStreak : '—'}
+                            <p className="text-sm text-gray-600 font-medium">Heroes Deployed</p>
+                            <p className="text-3xl font-bold text-gray-900 mt-1">
+                                {stats.heroesSentOnMission}
                             </p>
-                            {stats.currentStreak > 0 && (
-                                <p className="text-xs text-gray-500 mt-1">
-                                    {stats.isWinStreak ? 'wins' : 'losses'}
-                                </p>
-                            )}
                         </div>
-                        <div className="text-4xl">{stats.isWinStreak ? '🔥' : '💀'}</div>
+                        <div className="text-4xl">👊</div>
                     </div>
                 </div>
             </div>
@@ -155,7 +155,7 @@ function Dashboard() {
                                                     </div>
                                                     <div className="text-sm">
                                                         <span className="font-medium text-gray-900">
-                                                            {game.players.map(p => p.hero.name).join(', ')}
+                                                            {game.players.map(p => p.hero.name + " (" + p.hero.alterEgo + ")").join(', ')}
                                                         </span>
                                                         <span className="text-gray-500"> vs </span>
                                                         <span className="font-medium text-gray-900">{game.villain.name}</span>
