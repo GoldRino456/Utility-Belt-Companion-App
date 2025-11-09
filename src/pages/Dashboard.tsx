@@ -28,8 +28,10 @@ function Dashboard() {
     // Format relative date
     const formatRelativeDate = (dateString: string): string => {
         const date = new Date(dateString);
+        const tzOffset = date.getTimezoneOffset() * 60000;
+
         const now = new Date();
-        const diffMs = now.getTime() - date.getTime();
+        const diffMs = new Date(now.getTime() - tzOffset).getTime() - new Date(date.getTime() - tzOffset).getTime();
         const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
 
         if (diffDays === 0) return 'Today';

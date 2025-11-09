@@ -41,6 +41,8 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
         ...new Set(ownedProducts.flatMap(p => p.expertSets))
     ];
 
+    const tzOffset = new Date().getTimezoneOffset() * 60000;
+
     useEffect(() => {
         if (existingGame) {
             setDateTime(existingGame.dateTime);
@@ -54,7 +56,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
             setNotes(existingGame.notes || '');
         }
         else if (!!scenario) {
-            setDateTime(new Date().toISOString().slice(0, 16));
+            setDateTime(new Date(Date.now() - tzOffset).toISOString().slice(0, 16));
             setVillain(scenario.villain);
             setStandardSet(scenario.difficulty.standardSet);
             setExpertSet(scenario.difficulty.expertSet);
@@ -67,7 +69,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
         }
         else {
         // Default to current date/time for new games
-        setDateTime(new Date().toISOString().slice(0, 16));
+            setDateTime(new Date(Date.now() - tzOffset).toISOString().slice(0, 16));
         }
     }, [existingGame]);
 
