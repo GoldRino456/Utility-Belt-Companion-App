@@ -43,10 +43,20 @@ function Generator() {
       // Generate new scenario with same config (will get different villain due to randomness)
       const newScenario = generateScenario(currentConfig);
       if (newScenario) {
-        // Keep the same additional sets if possible and heroes
+
+          let additionalSets: string[] = scenario?.additionalSets || newScenario.additionalSets;
+
+          //Ensure recommended number of sets is met if checked
+          if ((scenario && currentConfig.matchEncounterSetNumber) &&
+              (scenario.additionalSets.length > newScenario.additionalSets.length
+              || scenario.additionalSets.length < newScenario.additionalSets.length)) {
+              additionalSets = newScenario.additionalSets;
+          }
+
+
         setScenario({
             ...newScenario,
-            additionalSets: scenario?.additionalSets || newScenario.additionalSets,
+            additionalSets: additionalSets,
             players: scenario?.players
         });
       }

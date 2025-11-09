@@ -465,7 +465,7 @@ export const products: Product[] = [
     },
     {
         id: 'cycle5-ironheart',
-        name: 'Nova Hero Pack',
+        name: 'Ironheart Hero Pack',
         type: ProductType.HERO_PACK,
         releaseDate: '2022-05-20',
         heroes: [
