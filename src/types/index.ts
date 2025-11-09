@@ -63,6 +63,7 @@ export enum AchievementCategory {
 // ============================================================================
 
 export interface Hero {
+    id: string;
     name: string;
     alterEgo: string;
     nemesis: string;
@@ -116,65 +117,8 @@ export interface GameLog {
     difficulty: DifficultyConfig;
     requiredSets: string[];
     additionalSets: string[];
-    result?: GameResult;
+    result: GameResult;
     notes?: string;
-}
-
-// ============================================================================
-// STATISTICS TYPES
-// ============================================================================
-
-export interface GameStatistics {
-    totalGames: number;
-    totalVictories: number;
-    totalDefeats: number;
-    winRate: number;
-    currentStreak: number;
-    isWinStreak: boolean;
-    totalNemesisEncounters: number;
-    lastPlayedDate?: string;
-}
-
-export interface HeroStats {
-    hero: Hero;
-    gamesPlayed: number;
-    victories: number;
-    defeats: number;
-    winRate: number;
-}
-
-export interface AspectStats {
-    aspect: AspectType;
-    gamesPlayed: number;
-    victories: number;
-    defeats: number;
-    winRate: number;
-}
-
-export interface VillainStats {
-    villain: Villain;
-    timesFaced: number;
-    victories: number;
-    defeats: number;
-    winRate: number;
-}
-
-export interface NemesisStats {
-    hero: Hero;
-    totalEncounters: number;
-    encounterRate: number; 
-    winsWithNemesis: number;
-    winsWithoutNemesis: number;
-    winRateWithNemesis: number;
-    winRateWithoutNemesis: number;
-}
-
-export interface DifficultyStats {
-    standardSet: StandardSet;
-    expertSet: ExpertSet;
-    gamesPlayed: number;
-    victories: number;
-    winRate: number;
 }
 
 // ============================================================================
@@ -243,72 +187,4 @@ export interface ExportData {
     games: GameLog[];
     achievements: Achievement[];
     settings: AppSettings;
-}
-
-// ============================================================================
-// FILTER TYPES (for UI components)
-// ============================================================================
-
-export interface GameLogFilters {
-    hero?: Hero;
-    villain?: Villain;
-    aspect?: AspectType;
-    result?: GameResult;
-    dateFrom?: string;
-    dateTo?: string;
-    standardSet?: StandardSet;
-    expertSet?: ExpertSet;
-    nemesisEncountered?: boolean;
-}
-
-export interface ProductFilters {
-    type?: ProductType;
-    owned?: boolean;
-    searchTerm?: string;
-}
-
-// ============================================================================
-// CONTEXT TYPES (for React Context)
-// ============================================================================
-
-export interface AppContextType {
-    // Collection
-    collection: CollectionItem[];
-    ownedProducts: Product[];
-    updateCollection: (items: CollectionItem[]) => Promise<void>;
-    toggleProductOwnership: (productId: string) => Promise<void>;
-
-    // Games
-    games: GameLog[];
-    addGame: (game: Omit<GameLog, 'id'>) => Promise<void>;
-    updateGame: (id: string, game: Partial<GameLog>) => Promise<void>;
-    deleteGame: (id: string) => Promise<void>;
-
-    // Achievements
-    achievements: Achievement[];
-    updateAchievement: (id: string, updates: Partial<Achievement>) => Promise<void>;
-    checkAchievements: () => Promise<void>;
-
-    // Settings
-    settings: AppSettings;
-    updateSettings: (settings: Partial<AppSettings>) => Promise<void>;
-
-    // Data management
-    exportData: () => Promise<ExportData>;
-    importData: (data: ExportData, mode: 'merge' | 'replace') => Promise<void>;
-    clearAllData: () => Promise<void>;
-
-    // Loading state
-    isLoading: boolean;
-}
-
-// ============================================================================
-// UTILITY TYPES
-// ============================================================================
-
-export type SortDirection = 'asc' | 'desc';
-
-export interface SortConfig<T> {
-    key: keyof T;
-    direction: SortDirection;
 }

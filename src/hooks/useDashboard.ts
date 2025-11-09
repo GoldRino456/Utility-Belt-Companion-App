@@ -116,12 +116,12 @@ export function useDashboard(): UseDashboardReturn {
 
     // Calculate top heroes
     const topHeroes: HeroStats[] = useMemo(() => {
-        const heroMap = new Map<string, { victories: number; total: number }>();
+        const heroMap = new Map<string, { heroName: string;  victories: number; total: number }>();
 
         games.forEach(game => {
             game.players.forEach(player => {
-                const heroName = player.hero.name;
-                const stats = heroMap.get(heroName) || { victories: 0, total: 0 };
+                const heroId = player.hero.id;
+                const stats = heroMap.get(heroId) || { heroName: player.hero.name + " (" + player.hero.alterEgo + ")", victories: 0, total: 0 };
 
                 if (game.result === GameResult.VICTORY) {
                     stats.victories++;
@@ -132,15 +132,15 @@ export function useDashboard(): UseDashboardReturn {
                     stats.total++;
                 }
 
-                heroMap.set(heroName, stats);
+                heroMap.set(heroId, stats);
             });
         });
 
         // Filter heroes with at least 3 games and calculate win rates
         const heroStats = Array.from(heroMap.entries())
             .filter(([_, stats]) => stats.total >= 3)
-            .map(([heroName, stats]): HeroStats => ({
-                heroName,
+            .map(([heroId, stats]): HeroStats => ({
+                heroName: stats.heroName,
                 gamesPlayed: stats.total,
                 victories: stats.victories,
                 winRate: (stats.victories / stats.total) * 100

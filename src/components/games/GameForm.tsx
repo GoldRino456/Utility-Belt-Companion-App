@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { GameLog, Player, Product, AspectType, StandardSet, ExpertSet, GameResult, Hero, Villain, GeneratedScenario } from '../../types';
-import { getVillainByName, getAllAspects, getHeroByName } from '../../data/products';
+import { getVillainByName, getHeroById } from '../../data/products';
 
 interface GameFormProperties {
     ownedProducts: Product[];
@@ -15,7 +15,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
     const [dateTime, setDateTime] = useState('');
     const [playerCount, setPlayerCount] = useState(1);
     const [players, setPlayers] = useState<Player[]>([
-        { playerName: '', hero: { name: '', alterEgo: '', nemesis: '' }, aspects: [], nemesisEncountered: false }
+        { playerName: '', hero: { id:'', name: '', alterEgo: '', nemesis: '' }, aspects: [], nemesisEncountered: false }
     ]);
     const [villain, setVillain] = useState<Villain>();
     const [standardSet, setStandardSet] = useState<StandardSet>(StandardSet.STANDARD);
@@ -77,7 +77,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
             // Add new players
             const newPlayers = Array(playerCount - currentPlayers.length).fill(null).map(() => ({
             playerName: '',
-            hero: { name: '', alterEgo: '', nemesis: '' },
+            hero: { id:'', name: '', alterEgo: '', nemesis: '' },
             aspects: [],
             nemesisEncountered: false
         }));
@@ -93,11 +93,11 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
         const updated = [...players];
         if (field === 'hero') {
         // When updating hero, find the Hero object
-        const heroName = value as string;
-        const heroData = getHeroByName(heroName);
+        const heroId = value as string;
+        const heroData = getHeroById(heroId);
         updated[index] = { 
             ...updated[index], 
-            hero: heroData ? heroData.hero : { name: heroName, alterEgo:'', nemesis: '' }
+            hero: heroData ? heroData.hero : {id:'', name: 'Error fetching hero data.', alterEgo:'', nemesis: '' }
         };
         } 
         else {
@@ -232,7 +232,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
                                   Hero *
                               </label>
                               <select
-                                  value={player.hero.name}
+                                  value={player.hero.id}
                                   onChange={(e) => updatePlayer(index, 'hero', e.target.value)}
                                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                   required
@@ -240,13 +240,13 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
                                   <option value="">Select Hero</option>
                                   <optgroup label="Owned Heroes">
                                       {ownedHeroes.map(hero => (
-                                          <option key={hero.name} value={hero.name}>{hero.name}</option>
+                                          <option key={hero.id} value={hero.id}>{hero.name + " (" + hero.alterEgo + ")"}</option>
                                       ))}
                                   </optgroup>
-                                  {allHeroes.filter(h => !ownedHeroes.some(oh => oh.name === h.name)).length > 0 && (
+                                  {allHeroes.filter(h => !ownedHeroes.some(oh => oh.id === h.id)).length > 0 && (
                                       <optgroup label="Other Heroes">
-                                          {allHeroes.filter(h => !ownedHeroes.some(oh => oh.name === h.name)).map(hero => (
-                                              <option key={hero.name} value={hero.name} className="text-gray-400">{hero.name}</option>
+                                          {allHeroes.filter(h => !ownedHeroes.some(oh => oh.id === h.id)).map(hero => (
+                                              <option key={hero.id} value={hero.id} className="text-gray-400">{hero.name + " (" + hero.alterEgo + ")"}</option>
                                           ))}
                                       </optgroup>
                                   )}

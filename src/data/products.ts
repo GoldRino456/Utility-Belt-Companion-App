@@ -11,30 +11,35 @@ export const products: Product[] = [
         releaseDate: '2019-11-01',
         heroes: [
             {
+                id: 'core-set-2019-spider-man',
                 name: 'Spider-Man',
                 alterEgo: 'Peter Parker',
                 nemesis: 'Vulture',
                 prebuiltAspects: [AspectType.JUSTICE]
             },
             {
+                id: 'core-set-2019-captain-marvel',
                 name: 'Captain Marvel',
                 alterEgo: 'Carol Danvers',
                 nemesis: 'Yon-Rogg',
                 prebuiltAspects: [AspectType.LEADERSHIP]
             },
             {
+                id: 'core-set-2019-she-hulk',
                 name: 'She-Hulk',
                 alterEgo: 'Jennifer Walters',
                 nemesis: 'Titania',
                 prebuiltAspects: [AspectType.AGGRESSION]
             },
             {
+                id: 'core-set-2019-iron-man',
                 name: 'Iron Man',
                 alterEgo: 'Tony Stark',
                 nemesis: 'Whiplash',
                 prebuiltAspects: [AspectType.AGGRESSION]
             },
             {
+                id: 'core-set-2019-black-panther',
                 name: 'Black Panther',
                 alterEgo: 'T\'Challa',
                 nemesis: 'Killmonger',
@@ -85,6 +90,7 @@ export const products: Product[] = [
         releaseDate: '2019-12-20',
         heroes: [
             {
+                id: 'cycle1-captain-america',
                 name: 'Captain America',
                 alterEgo: 'Steve Rogers',
                 nemesis: 'Baron Zemo',
@@ -104,6 +110,7 @@ export const products: Product[] = [
         releaseDate: '2019-12-20',
         heroes: [
             {
+                id: 'cycle1-ms-marvel',
                 name: 'Ms. Marvel',
                 alterEgo: 'Kamala Khan',
                 nemesis: 'Thomas Edison',
@@ -123,6 +130,7 @@ export const products: Product[] = [
         releaseDate: '2020-03-06',
         heroes: [
             {
+                id: 'cycle1-thor',
                 name: 'Thor',
                 alterEgo: 'Odinson',
                 nemesis: 'Loki',
@@ -142,6 +150,7 @@ export const products: Product[] = [
         releaseDate: '2020-06-05',
         heroes: [
             {
+                id: 'cycle1-black-widow',
                 name: 'Black Widow',
                 alterEgo: 'Natasha Romanoff',
                 nemesis: 'Taskmaster',
@@ -161,6 +170,7 @@ export const products: Product[] = [
         releaseDate: '2020-07-03',
         heroes: [
             {
+                id: 'cycle1-doctor-strange',
                 name: 'Doctor Strange',
                 alterEgo: 'Stephen Strange',
                 nemesis: 'Baron Mordo',
@@ -180,6 +190,7 @@ export const products: Product[] = [
         releaseDate: '2020-08-07',
         heroes: [
             {
+                id: 'cycle1-hulk',
                 name: 'Hulk',
                 alterEgo: 'Bruce Banner',
                 nemesis: 'Abomination',
@@ -199,6 +210,7 @@ export const products: Product[] = [
         releaseDate: '2020-11-06',
         heroes: [
             {
+                id: 'cycle2-ant-man',
                 name: 'Ant-Man',
                 alterEgo: 'Scott Lang',
                 nemesis: 'Yellowjacket',
@@ -218,6 +230,7 @@ export const products: Product[] = [
         releaseDate: '2021-01-22',
         heroes: [
             {
+                id: 'cycle2-wasp',
                 name: 'Wasp',
                 alterEgo: 'Nadia Van Dyne',
                 nemesis: 'Beetle',
@@ -237,6 +250,7 @@ export const products: Product[] = [
         releaseDate: '2021-02-05',
         heroes: [
             {
+                id: 'cycle2-quicksilver',
                 name: 'Quicksilver',
                 alterEgo: 'Pietro Maximoff',
                 nemesis: 'Avalanche',
@@ -256,6 +270,7 @@ export const products: Product[] = [
         releaseDate: '2021-03-05',
         heroes: [
             {
+                id: 'cycle2-scarlet-witch',
                 name: 'Scarlet Witch',
                 alterEgo: 'Wanda Maximoff',
                 nemesis: 'Luminous',
@@ -275,6 +290,7 @@ export const products: Product[] = [
         releaseDate: '2021-05-14',
         heroes: [
             {
+                id: 'cycle3-star-lord',
                 name: 'Star-Lord',
                 alterEgo: 'Peter Quill',
                 nemesis: 'Mister Knife',
@@ -294,6 +310,7 @@ export const products: Product[] = [
         releaseDate: '2021-05-14',
         heroes: [
             {
+                id: 'cycle3-gamora',
                 name: 'Gamora',
                 alterEgo: 'Gamora',
                 nemesis: 'Nebula',
@@ -313,6 +330,7 @@ export const products: Product[] = [
         releaseDate: '2021-06-18',
         heroes: [
             {
+                id: 'cycle3-drax',
                 name: 'Drax',
                 alterEgo: 'Drax',
                 nemesis: 'Yotat The Destroyer',
@@ -332,6 +350,7 @@ export const products: Product[] = [
         releaseDate: '2021-07-16',
         heroes: [
             {
+                id: 'cycle3-venom',
                 name: 'Venom',
                 alterEgo: 'Flash Thompson',
                 nemesis: 'Enraged Symbiotes',
@@ -351,6 +370,7 @@ export const products: Product[] = [
         releaseDate: '2021-09-17',
         heroes: [
             {
+                id: 'cycle4-nebula',
                 name: 'Nebula',
                 alterEgo: 'Nebula',
                 nemesis: 'Gamora',
@@ -370,6 +390,7 @@ export const products: Product[] = [
         releaseDate: '2021-11-12',
         heroes: [
             {
+                id: 'cycle4-war-machine',
                 name: 'War Machine',
                 alterEgo: 'James Rhodes',
                 nemesis: 'Living Laser',
@@ -389,6 +410,7 @@ export const products: Product[] = [
         releaseDate: '2022-01-21',
         heroes: [
             {
+                id: 'cycle4-valkyrie',
                 name: 'Valkyrie',
                 alterEgo: 'Brunnhilde',
                 nemesis: 'Enchantress',
@@ -408,6 +430,7 @@ export const products: Product[] = [
         releaseDate: '2022-01-14',
         heroes: [
             {
+                id: 'cycle4-vison',
                 name: 'Vison',
                 alterEgo: 'Vison',
                 nemesis: 'Ultron',
@@ -427,6 +450,7 @@ export const products: Product[] = [
         releaseDate: '2022-05-20',
         heroes: [
             {
+                id: 'cycle5-nova',
                 name: 'Nova',
                 alterEgo: 'Sam Alexander',
                 nemesis: 'Warbringer',
@@ -446,6 +470,7 @@ export const products: Product[] = [
         releaseDate: '2022-05-20',
         heroes: [
             {
+                id: 'cycle5-ironheart',
                 name: 'Ironheart',
                 alterEgo: 'Riri Williams',
                 nemesis: 'Lucia von Bardas',
@@ -465,6 +490,7 @@ export const products: Product[] = [
         releaseDate: '2022-07-15',
         heroes: [
             {
+                id: 'cycle5-spider-ham',
                 name: 'Spider-Ham',
                 alterEgo: 'Peter Porker',
                 nemesis: 'The Green Gobbler',
@@ -484,6 +510,7 @@ export const products: Product[] = [
         releaseDate: '2022-07-15',
         heroes: [
             {
+                id: 'cycle5-sp//dr',
                 name: 'SP//dr',
                 alterEgo: 'Peni Parker',
                 nemesis: 'M.O.R.B.I.U.S.',
@@ -503,6 +530,7 @@ export const products: Product[] = [
         releaseDate: '2022-09-30',
         heroes: [
             {
+                id: 'cycle6-cyclops',
                 name: 'Cyclops',
                 alterEgo: 'Scott Summers',
                 nemesis: 'Mister Sinister',
@@ -522,6 +550,7 @@ export const products: Product[] = [
         releaseDate: '2022-09-30',
         heroes: [
             {
+                id: 'cycle6-phoenix',
                 name: 'Phoenix',
                 alterEgo: 'Jean Grey',
                 nemesis: 'Dark Phoenix',
@@ -541,6 +570,7 @@ export const products: Product[] = [
         releaseDate: '2022-11-11',
         heroes: [
             {
+                id: 'cycle6-wolverine',
                 name: 'Wolverine',
                 alterEgo: 'Logan',
                 nemesis: 'Omega Red',
@@ -560,6 +590,7 @@ export const products: Product[] = [
         releaseDate: '2022-11-11',
         heroes: [
             {
+                id: 'cycle6-storm',
                 name: 'Storm',
                 alterEgo: 'Ororo Munroe',
                 nemesis: 'Callisto',
@@ -579,6 +610,7 @@ export const products: Product[] = [
         releaseDate: '2023-02-24',
         heroes: [
             {
+                id: 'cycle6-gambit',
                 name: 'Gambit',
                 alterEgo: 'Remy LeBeau',
                 nemesis: 'Belladonna',
@@ -598,6 +630,7 @@ export const products: Product[] = [
         releaseDate: '2023-02-24',
         heroes: [
             {
+                id: 'cycle6-rogue',
                 name: 'Rogue',
                 alterEgo: 'Anna Marie',
                 nemesis: 'Mystique',
@@ -617,6 +650,7 @@ export const products: Product[] = [
         releaseDate: '2023-09-22',
         heroes: [
             {
+                id: 'cycle7-psylocke',
                 name: 'Psylocke',
                 alterEgo: 'Betsy Braddock',
                 nemesis: 'Chimera',
@@ -636,6 +670,7 @@ export const products: Product[] = [
         releaseDate: '2023-09-22',
         heroes: [
             {
+                id: 'cycle7-angel',
                 name: 'Angel',
                 alterEgo: 'Warren Worthington III',
                 nemesis: 'Harpoon',
@@ -655,6 +690,7 @@ export const products: Product[] = [
         releaseDate: '2023-11-17',
         heroes: [
             {
+                id: 'cycle7-x-23',
                 name: 'X-23',
                 alterEgo: 'Laura Kinney',
                 nemesis: 'Lady Deathstrike',
@@ -674,6 +710,7 @@ export const products: Product[] = [
         releaseDate: '2023-11-17',
         heroes: [
             {
+                id: 'cycle7-deadpool',
                 name: 'Deadpool',
                 alterEgo: 'Wade Wilson',
                 nemesis: 'Butler',
@@ -693,6 +730,7 @@ export const products: Product[] = [
         releaseDate: '2024-05-17',
         heroes: [
             {
+                id: 'cycle8-iceman',
                 name: 'Iceman',
                 alterEgo: 'Bobby Drake',
                 nemesis: 'Pyro',
@@ -712,6 +750,7 @@ export const products: Product[] = [
         releaseDate: '2024-07-19',
         heroes: [
             {
+                id: 'cycle8-jubilee',
                 name: 'Jubilee',
                 alterEgo: 'Jubilation Lee',
                 nemesis: 'Nanny',
@@ -731,6 +770,7 @@ export const products: Product[] = [
         releaseDate: '2024-09-20',
         heroes: [
             {
+                id: 'cycle8-nightcrawler',
                 name: 'Nightcrawler',
                 alterEgo: 'Kurt Wagner',
                 nemesis: 'Azazel',
@@ -750,6 +790,7 @@ export const products: Product[] = [
         releaseDate: '2024-11-15',
         heroes: [
             {
+                id: 'cycle8-magneto',
                 name: 'Magneto',
                 alterEgo: 'Erik Lehnsherr',
                 nemesis: 'Exodus',
@@ -769,6 +810,7 @@ export const products: Product[] = [
         releaseDate: '2025-05-02',
         heroes: [
             {
+                id: 'cycle9-black-panther',
                 name: 'Black Panther',
                 alterEgo: 'Shuri',
                 nemesis: 'Klaw',
@@ -788,6 +830,7 @@ export const products: Product[] = [
         releaseDate: '2025-05-02',
         heroes: [
             {
+                id: 'cycle9-silk',
                 name: 'Silk',
                 alterEgo: 'Cindy Moon',
                 nemesis: 'Morlun',
@@ -807,6 +850,7 @@ export const products: Product[] = [
         releaseDate: '2025-06-20',
         heroes: [
             {
+                id: 'cycle9-falcon',
                 name: 'Falcon',
                 alterEgo: 'Sam Wilson',
                 nemesis: 'Viper',
@@ -826,6 +870,7 @@ export const products: Product[] = [
         releaseDate: '2025-06-20',
         heroes: [
             {
+                id: 'cycle9-winter-soldier',
                 name: 'Winter Soldier',
                 alterEgo: 'Bucky Barnes',
                 nemesis: 'Crossbones',
@@ -1021,12 +1066,14 @@ export const products: Product[] = [
         releaseDate: '2020-09-04',
         heroes: [
             {
+                id: 'rise-of-red-skull-hawkeye',
                 name: 'Hawkeye',
                 alterEgo: 'Clint Barton',
                 nemesis: 'Crossfire',
                 prebuiltAspects: [AspectType.LEADERSHIP]
             },
             {
+                id: 'rise-of-red-skull-spider-woman',
                 name: 'Spider-Woman',
                 alterEgo: 'Jessica Drew',
                 nemesis: 'The Viper',
@@ -1077,12 +1124,14 @@ export const products: Product[] = [
         releaseDate: '2021-04-02',
         heroes: [
             {
+                id: 'galaxys-most-wanted-groot',
                 name: 'Groot',
                 alterEgo: 'Groot',
                 nemesis: 'Furnax',
                 prebuiltAspects: [AspectType.PROTECTION]
             },
             {
+                id: 'galaxys-most-wanted-rocket-raccoon',
                 name: 'Rocket Raccoon',
                 alterEgo: 'Rocket Raccoon',
                 nemesis: "Blackjack O'Hare",
@@ -1137,12 +1186,14 @@ export const products: Product[] = [
         releaseDate: '2021-10-29',
         heroes: [
             {
+                id: 'the-mad-titans-shadow-spectrum',
                 name: 'Spectrum',
                 alterEgo: 'Monica Rambeau',
                 nemesis: 'Radioactive Man',
                 prebuiltAspects: [AspectType.LEADERSHIP]
             },
             {
+                id: 'the-mad-titans-shadow-adam-warlock',
                 name: 'Adam Warlock',
                 alterEgo: 'Adam Warlock',
                 nemesis: "The Magus",
@@ -1200,12 +1251,14 @@ export const products: Product[] = [
         releaseDate: '2022-04-08',
         heroes: [
             {
+                id: 'sinister-motives-ghost-spider',
                 name: 'Ghost-Spider',
                 alterEgo: 'Gwen Stacy',
                 nemesis: 'The Lizard',
                 prebuiltAspects: [AspectType.PROTECTION]
             },
             {
+                id: 'sinister-motives-spider-man',
                 name: 'Spider-Man',
                 alterEgo: 'Miles Morales',
                 nemesis: "Prowler",
@@ -1261,12 +1314,14 @@ export const products: Product[] = [
         releaseDate: '2022-09-30',
         heroes: [
             {
+                id: 'mutant-genesis-colossus',
                 name: 'Colossus',
                 alterEgo: 'Piotr Rasputin',
                 nemesis: 'Juggernaut',
                 prebuiltAspects: [AspectType.PROTECTION]
             },
             {
+                id: 'mutant-genesis-shadowcat',
                 name: 'Shadowcat',
                 alterEgo: 'Kitty Pryde',
                 nemesis: "White Queen",
@@ -1319,12 +1374,14 @@ export const products: Product[] = [
         releaseDate: '2023-08-18',
         heroes: [
             {
+                id: 'next-evolution-cable',
                 name: 'Cable',
                 alterEgo: 'Nathan Summers',
                 nemesis: 'Stryfe',
                 prebuiltAspects: [AspectType.LEADERSHIP]
             },
             {
+                id: 'next-evolution-domino',
                 name: 'Domino',
                 alterEgo: 'Neena Thurman',
                 nemesis: "Topaz",
@@ -1381,12 +1438,14 @@ export const products: Product[] = [
         releaseDate: '2024-03-29',
         heroes: [
             {
+                id: 'age-of-apocalypse-bishop',
                 name: 'Bishop',
                 alterEgo: 'Lucas Bishop',
                 nemesis: 'Trevor Fitzroy',
                 prebuiltAspects: [AspectType.LEADERSHIP]
             },
             {
+                id: 'age-of-apocalypse-magik',
                 name: 'Magik',
                 alterEgo: 'Illyana Rasputin',
                 nemesis: 'Belasco',
@@ -1444,12 +1503,14 @@ export const products: Product[] = [
         releaseDate: '2025-03-07',
         heroes: [
             {
+                id: 'agents-of-shield-maria-hill',
                 name: 'Maria Hill',
                 alterEgo: 'Maria Hill',
                 nemesis: 'Controller',
                 prebuiltAspects: [AspectType.LEADERSHIP]
             },
             {
+                id: 'agents-of-shield-nick-fury',
                 name: 'Nick Fury',
                 alterEgo: 'Nick Fury',
                 nemesis: 'Orion',
@@ -1465,7 +1526,7 @@ export const products: Product[] = [
             {
                 name: 'Batroc',
                 requiredSets: ['Batroc'],
-                recommendedSets: ['A.I.M. Science', 'Batroc’s Brigade']
+                recommendedSets: ['A.I.M. Science', "Batroc's Brigade"]
             },
             {
                 name: 'M.O.D.O.K.',
@@ -1493,7 +1554,7 @@ export const products: Product[] = [
         modularSets: [
             'A.I.M. Abuction',
             'A.I.M. Science',
-            'Batroc’s Brigade',
+            "Batroc's Brigade",
             'Scientist Supreme',
             'S.H.I.E.L.D.',
             'S.H.I.E.L.D. Executive Board',
@@ -1571,13 +1632,12 @@ export function getProductById(id: string): Product | undefined {
 /**
  * Get hero by name (with nemesis info)
  */
-export function getHeroByName(name: string): { hero: Hero; product: Product } | undefined {
+export function getHeroById(heroId: string): { hero: Hero } | undefined {
     for (const product of products) {
-        const hero = product.heroes.find(h => h.name === name);
+        const hero = product.heroes.find(h => h.id === heroId);
         if (hero) {
             return {
-                hero,
-                product
+                hero
             };
         }
     }
