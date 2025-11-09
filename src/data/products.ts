@@ -554,6 +554,120 @@ export const products: Product[] = [
         aspects: []
     },
     {
+        id: 'cycle6-storm',
+        name: 'Storm Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2022-11-11',
+        heroes: [
+            {
+                name: 'Storm',
+                alterEgo: 'Ororo Munroe',
+                nemesis: 'Callisto',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            }
+        ],
+        villains: [],
+        modularSets: ["Shadow King"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle6-gambit',
+        name: 'Gambit Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2023-02-24',
+        heroes: [
+            {
+                name: 'Gambit',
+                alterEgo: 'Remy LeBeau',
+                nemesis: 'Belladonna',
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [],
+        modularSets: ["Exodus"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle6-rogue',
+        name: 'Rogue Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2023-02-24',
+        heroes: [
+            {
+                name: 'Rogue',
+                alterEgo: 'Anna Marie',
+                nemesis: 'Mystique',
+                prebuiltAspects: [AspectType.PROTECTION]
+            }
+        ],
+        villains: [],
+        modularSets: ["Reavers"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle7-psylocke',
+        name: 'Psylocke Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2023-09-22',
+        heroes: [
+            {
+                name: 'Psylocke',
+                alterEgo: 'Betsy Braddock',
+                nemesis: 'Chimera',
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle7-angel',
+        name: 'Angel Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2023-09-22',
+        heroes: [
+            {
+                name: 'Angel',
+                alterEgo: 'Warren Worthington III',
+                nemesis: 'Harpoon',
+                prebuiltAspects: [AspectType.PROTECTION]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle7-x-23',
+        name: 'X-23 Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2023-11-17',
+        heroes: [
+            {
+                name: 'X-23',
+                alterEgo: 'Laura Kinney',
+                nemesis: 'Lady Deathstrike',
+                prebuiltAspects: [AspectType.AGGRESSION]
+            }
+        ],
+        villains: [],
+        modularSets: [],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
         id: 'cycle7-deadpool',
         name: 'Deadpool Hero Pack',
         type: ProductType.HERO_PACK,
@@ -571,6 +685,158 @@ export const products: Product[] = [
         standardSets: [],
         expertSets: [],
         aspects: [AspectType.POOL]
+    },
+    {
+        id: 'cycle8-iceman',
+        name: 'Iceman Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2024-05-17',
+        heroes: [
+            {
+                name: 'Iceman',
+                alterEgo: 'Bobby Drake',
+                nemesis: 'Pyro',
+                prebuiltAspects: [AspectType.AGGRESSION]
+            }
+        ],
+        villains: [],
+        modularSets: ["Sauron"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle8-jubilee',
+        name: 'Jubilee Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2024-07-19',
+        heroes: [
+            {
+                name: 'Jubilee',
+                alterEgo: 'Jubilation Lee',
+                nemesis: 'Nanny',
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [],
+        modularSets: ["Arcade"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle8-nightcrawler',
+        name: 'Nightcrawler Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2024-09-20',
+        heroes: [
+            {
+                name: 'Nightcrawler',
+                alterEgo: 'Kurt Wagner',
+                nemesis: 'Azazel',
+                prebuiltAspects: [AspectType.PROTECTION]
+            }
+        ],
+        villains: [],
+        modularSets: ["Crazy Gang"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle8-magneto',
+        name: 'Magneto Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2024-11-15',
+        heroes: [
+            {
+                name: 'Magneto',
+                alterEgo: 'Erik Lehnsherr',
+                nemesis: 'Exodus',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            }
+        ],
+        villains: [],
+        modularSets: ["Hellfire"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle9-black-panther',
+        name: 'Black Panther Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2025-05-02',
+        heroes: [
+            {
+                name: 'Black Panther',
+                alterEgo: 'Shuri',
+                nemesis: 'Klaw',
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [],
+        modularSets: ["Extreme Risk"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle9-silk',
+        name: 'Silk Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2025-05-02',
+        heroes: [
+            {
+                name: 'Silk',
+                alterEgo: 'Cindy Moon',
+                nemesis: 'Morlun',
+                prebuiltAspects: [AspectType.PROTECTION]
+            }
+        ],
+        villains: [],
+        modularSets: ["Growing Strong"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle9-falcon',
+        name: 'Falcon Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2025-06-20',
+        heroes: [
+            {
+                name: 'Falcon',
+                alterEgo: 'Sam Wilson',
+                nemesis: 'Viper',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            }
+        ],
+        villains: [],
+        modularSets: ["Techno"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle9-winter-soldier',
+        name: 'Winter Soldier Hero Pack',
+        type: ProductType.HERO_PACK,
+        releaseDate: '2025-06-20',
+        heroes: [
+            {
+                name: 'Winter Soldier',
+                alterEgo: 'Bucky Barnes',
+                nemesis: 'Crossbones',
+                prebuiltAspects: [AspectType.AGGRESSION]
+            }
+        ],
+        villains: [],
+        modularSets: ["Whiteout"],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
     },
 
     // ============================================================================
@@ -617,6 +883,28 @@ export const products: Product[] = [
         aspects: []
     },
     {
+        id: 'cycle2-the-once-and-future-kang',
+        name: 'The Once and Future Kang Scenario Pack',
+        type: ProductType.SCENARIO_PACK,
+        releaseDate: '2020-10-02',
+        heroes: [],
+        villains: [
+            {
+                name: 'Kang',
+                requiredSets: ['Kang'],
+                recommendedSets: ['Temporal']
+            }
+        ],
+        modularSets: [
+            'Temporal',
+            'Anachronauts',
+            'Master of Time'
+        ],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
         id: 'cycle4-the-hood',
         name: 'The Hood Scenario Pack',
         type: ProductType.SCENARIO_PACK,
@@ -650,6 +938,76 @@ export const products: Product[] = [
         ],
         standardSets: [StandardSet.STANDARD_II],
         expertSets: [ExpertSet.EXPERT_II],
+        aspects: []
+    },
+    {
+        id: 'cycle6-mojo-mania',
+        name: 'Mojo Mania Scenario Pack',
+        type: ProductType.SCENARIO_PACK,
+        releaseDate: '2022-11-11',
+        heroes: [],
+        villains: [
+            {
+                name: 'MaGog',
+                requiredSets: ['Magog'],
+                recommendedSets: [
+                    'Fantasy'
+                ]
+            },
+            {
+                name: 'Spiral',
+                requiredSets: ['Spiral', 'Crime', 'Horror', 'Sci-Fi'],
+                recommendedSets: []
+            },
+            {
+                name: 'Mojo',
+                requiredSets: ['Spiral'],
+                recommendedSets: [
+                    'Sitcom',
+                    'Western'
+                ]
+            }
+        ],
+        modularSets: [
+            'Crime',
+            'Fantasy',
+            'Horror',
+            'Sci-Fi',
+            'Sitcom',
+            'Western',
+            'Longshot'
+        ],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'cycle9-trickster-takeover',
+        name: 'Trickster Takeover Scenario Pack',
+        type: ProductType.SCENARIO_PACK,
+        releaseDate: '2025-08-15',
+        heroes: [],
+        villains: [
+            {
+                name: 'Enchantress',
+                requiredSets: ['Enchantress'],
+                recommendedSets: [
+                    'Trickster Magic'
+                ]
+            },
+            {
+                name: 'Loki, God of Lies',
+                requiredSets: ['God of Lies'],
+                recommendedSets: [
+                    'Trickster Magic'
+                ]
+            }
+        ],
+        modularSets: [
+            'Trickster Magic'
+        ],
+        standardSets: [],
+        expertSets: [],
         aspects: []
     },
 
@@ -707,6 +1065,310 @@ export const products: Product[] = [
             'Weapon Master',
             'Hydra Assault',
             'Experimental Weapons'
+        ],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'galaxys-most-wanted',
+        name: "Galaxy's Most Wanted",
+        type: ProductType.CAMPAIGN_BOX,
+        releaseDate: '2021-04-02',
+        heroes: [
+            {
+                name: 'Groot',
+                alterEgo: 'Groot',
+                nemesis: 'Furnax',
+                prebuiltAspects: [AspectType.PROTECTION]
+            },
+            {
+                name: 'Rocket Raccoon',
+                alterEgo: 'Rocket Raccoon',
+                nemesis: "Blackjack O'Hare",
+                prebuiltAspects: [AspectType.AGGRESSION]
+            }
+        ],
+        villains: [
+            {
+                name: 'Brotherhood of Badoon',
+                requiredSets: ['Brotherhood of Badoon', 'Ship Command'],
+                recommendedSets: ['Band of Badoon']
+            },
+            {
+                name: 'Collector, Infiltrate the Museum',
+                requiredSets: ['Infiltrate the Museum', 'Galactic Artifacts'],
+                recommendedSets: ['Menagerie Medley']
+            },
+            {
+                name: 'Collector, Escape the Museum',
+                requiredSets: ['Escape the Museum', 'Galactic Artifacts', 'Ship Command'],
+                recommendedSets: ['Menagerie Medley']
+            },
+            {
+                name: 'Nebula',
+                requiredSets: ['Nebula', 'Power Stone', 'Ship Command'],
+                recommendedSets: ['Space Pirates']
+            },
+            {
+                name: 'Ronan the Accuser',
+                requiredSets: ['Ronan the Accuser', 'Power Stone', 'Ship Command'],
+                recommendedSets: ['Kree Militants']
+            }
+        ],
+        modularSets: [
+            'Band of Badoon',
+            'Galactic Artifacts',
+            'Kree Militants',
+            'Menagerie Medley',
+            'Space Pirates',
+            'Badoon Headhunter',
+            'Ship Command',
+            'Power Stone'
+        ],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'the-mad-titans-shadow',
+        name: "The Mad Titan's Shadow",
+        type: ProductType.CAMPAIGN_BOX,
+        releaseDate: '2021-10-29',
+        heroes: [
+            {
+                name: 'Spectrum',
+                alterEgo: 'Monica Rambeau',
+                nemesis: 'Radioactive Man',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            },
+            {
+                name: 'Adam Warlock',
+                alterEgo: 'Adam Warlock',
+                nemesis: "The Magus",
+                prebuiltAspects: [
+                    AspectType.AGGRESSION,
+                    AspectType.JUSTICE,
+                    AspectType.LEADERSHIP,
+                    AspectType.PROTECTION]
+            }
+        ],
+        villains: [
+            {
+                name: 'Ebony Maw',
+                requiredSets: ['Ebony Maw'],
+                recommendedSets: ['The Black Order', 'Armies of Titan']
+            },
+            {
+                name: 'Tower Defense',
+                requiredSets: ['Tower Defense'],
+                recommendedSets: ['Armies of Titan']
+            },
+            {
+                name: 'Thanos',
+                requiredSets: ['Thanos', 'Infinity Gauntlet'],
+                recommendedSets: ['The Black Order', 'Children of Thanos']
+            },
+            {
+                name: 'Hela',
+                requiredSets: ['Hela'],
+                recommendedSets: ['Legions of Hel', 'Frost Giants']
+            },
+            {
+                name: 'Loki',
+                requiredSets: ['Loki', 'Infinity Gauntlet'],
+                recommendedSets: ['Frost Giants', 'Enchantress']
+            }
+        ],
+        modularSets: [
+            'The Black Order',
+            'Armies of Titan',
+            'Children of Thanos',
+            'Infinity Gauntlet',
+            'Legions of Hel',
+            'Frost Giants',
+            'Enchantress'
+        ],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'sinister-motives',
+        name: "Sinister Motives",
+        type: ProductType.CAMPAIGN_BOX,
+        releaseDate: '2022-04-08',
+        heroes: [
+            {
+                name: 'Ghost-Spider',
+                alterEgo: 'Gwen Stacy',
+                nemesis: 'The Lizard',
+                prebuiltAspects: [AspectType.PROTECTION]
+            },
+            {
+                name: 'Spider-Man',
+                alterEgo: 'Miles Morales',
+                nemesis: "Prowler",
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [
+            {
+                name: 'Sandman',
+                requiredSets: ['Sandman', 'City in Chaos'],
+                recommendedSets: ['Down to Earth']
+            },
+            {
+                name: 'Venom',
+                requiredSets: ['Venom', 'Symbiotic Strength'],
+                recommendedSets: ['Down to Earth']
+            },
+            {
+                name: 'Mysterio',
+                requiredSets: ['Mysterio', 'Personal Nightmare'],
+                recommendedSets: ['Whispers of Paranoia']
+            },
+            {
+                name: 'The Sinister Six',
+                requiredSets: ['The Sinister Six', 'Guerilla Tactics'],
+                recommendedSets: []
+            },
+            {
+                name: 'Venom Goblin',
+                requiredSets: ['Venom Goblin', 'Symbiotic Strength'],
+                recommendedSets: ['Goblin Gear']
+            }
+        ],
+        modularSets: [
+            'City in Chaos',
+            'Down to Earth',
+            'Goblin Gear',
+            'Guerilla Tactics',
+            'Osborn Tech',
+            'Personal Nightmare',
+            'Sinister Assault',
+            'Symbiotic Strength',
+            'Whispers of Paranoia'
+        ],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'mutant-genesis',
+        name: "Mutant Genesis",
+        type: ProductType.CAMPAIGN_BOX,
+        releaseDate: '2022-09-30',
+        heroes: [
+            {
+                name: 'Colossus',
+                alterEgo: 'Piotr Rasputin',
+                nemesis: 'Juggernaut',
+                prebuiltAspects: [AspectType.PROTECTION]
+            },
+            {
+                name: 'Shadowcat',
+                alterEgo: 'Kitty Pryde',
+                nemesis: "White Queen",
+                prebuiltAspects: [AspectType.AGGRESSION]
+            }
+        ],
+        villains: [
+            {
+                name: 'Sabretooth',
+                requiredSets: ['Sabretooth'],
+                recommendedSets: ['Mystique', 'Brotherhood']
+            },
+            {
+                name: 'Project Wideawake',
+                requiredSets: ['Project Wideawake', 'Zero Tolerance'],
+                recommendedSets: ['Sentinels']
+            },
+            {
+                name: 'Master Mold',
+                requiredSets: ['Master Mold', 'Sentinels'],
+                recommendedSets: ['Zero Tolerance']
+            },
+            {
+                name: 'Mansion Attack',
+                requiredSets: ['Mansion Attack', 'Brotherhood'],
+                recommendedSets: ['Mystique']
+            },
+            {
+                name: 'Magneto',
+                requiredSets: ['Magneto'],
+                recommendedSets: ['Acolytes']
+            }
+        ],
+        modularSets: [
+            'Mystique',
+            'Brotherhood',
+            'Zero Tolerance',
+            'Sentinels',
+            'Acolytes',
+            'Future Past'
+        ],
+        standardSets: [],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'next-evolution',
+        name: "NeXt Evolution",
+        type: ProductType.CAMPAIGN_BOX,
+        releaseDate: '2023-08-18',
+        heroes: [
+            {
+                name: 'Cable',
+                alterEgo: 'Nathan Summers',
+                nemesis: 'Stryfe',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            },
+            {
+                name: 'Domino',
+                alterEgo: 'Neena Thurman',
+                nemesis: "Topaz",
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [
+            {
+                name: 'Morlock Siege',
+                requiredSets: ['Marauders', 'Morlock Siege'],
+                recommendedSets: ['Military Grade', 'Mutant Slayers']
+            },
+            {
+                name: 'On The Run',
+                requiredSets: ['Marauders', 'On The Run', 'Mutant Slayers'],
+                recommendedSets: ['Military Grade', 'Nasty Boys']
+            },
+            {
+                name: 'Juggernaut',
+                requiredSets: ['Juggernaut', 'Hope Summers'],
+                recommendedSets: ['Black Tom Cassidy']
+            },
+            {
+                name: 'Mister Sinister',
+                requiredSets: ['Mister Sinister', 'Flight', 'Super Strength', 'Telepathy', 'Hope Summers'],
+                recommendedSets: ['Nasty Boys']
+            },
+            {
+                name: 'Stryfe',
+                requiredSets: ['Stryfe', 'Hope Summers'],
+                recommendedSets: ['Extreme Measures', 'Mutant Insurrection']
+            }
+        ],
+        modularSets: [
+            'Military Grade',
+            'Mutant Slayers',
+            'Nasty Boys',
+            'Hope Summers',
+            'Black Tom Cassidy',
+            'Flight',
+            'Super Strength',
+            'Telepathy',
+            'Extreme Measures',
+            'Mutant Insurrection'
         ],
         standardSets: [],
         expertSets: [],
@@ -772,6 +1434,77 @@ export const products: Product[] = [
             'Prelates'
         ],
         standardSets: [StandardSet.STANDARD_III],
+        expertSets: [],
+        aspects: []
+    },
+    {
+        id: 'agents-of-shield',
+        name: 'Agents of S.H.I.E.L.D.',
+        type: ProductType.CAMPAIGN_BOX,
+        releaseDate: '2025-03-07',
+        heroes: [
+            {
+                name: 'Maria Hill',
+                alterEgo: 'Maria Hill',
+                nemesis: 'Controller',
+                prebuiltAspects: [AspectType.LEADERSHIP]
+            },
+            {
+                name: 'Nick Fury',
+                alterEgo: 'Nick Fury',
+                nemesis: 'Orion',
+                prebuiltAspects: [AspectType.JUSTICE]
+            }
+        ],
+        villains: [
+            {
+                name: 'Black Widow',
+                requiredSets: ['Black Widow'],
+                recommendedSets: ['A.I.M. Abuction', 'A.I.M. Science']
+            },
+            {
+                name: 'Batroc',
+                requiredSets: ['Batroc'],
+                recommendedSets: ['A.I.M. Science', 'Batroc’s Brigade']
+            },
+            {
+                name: 'M.O.D.O.K.',
+                requiredSets: ['M.O.D.O.K.'],
+                recommendedSets: ['Scientist Supreme']
+            },
+            {
+                name: 'Thunderbolts',
+                requiredSets: ['Thunderbolts'],
+                recommendedSets: [
+                    'Gravitational Pull',
+                    'Hard Sound',
+                    'Pale Little Spider',
+                    'Power of the Atom',
+                    'Supersonic',
+                    'The Leaper'
+                ]
+            },
+            {
+                name: 'Baron Zemo',
+                requiredSets: ['Baron Zemo', 'S.H.I.E.L.D. Executive Board', 'Executive Board Evidence'],
+                recommendedSets: ['Scientist Supreme', 'S.H.I.E.L.D.']
+            }
+        ],
+        modularSets: [
+            'A.I.M. Abuction',
+            'A.I.M. Science',
+            'Batroc’s Brigade',
+            'Scientist Supreme',
+            'S.H.I.E.L.D.',
+            'S.H.I.E.L.D. Executive Board',
+            'Gravitational Pull',
+            'Hard Sound',
+            'Pale Little Spider',
+            'Power of the Atom',
+            'Supersonic',
+            'The Leaper'
+        ],
+        standardSets: [],
         expertSets: [],
         aspects: []
     }
