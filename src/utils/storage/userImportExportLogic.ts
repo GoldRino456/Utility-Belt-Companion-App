@@ -106,7 +106,7 @@ export async function clearAllData() {
     }
 }
 
-function isValidExportData(data: any): data is ExportData {
+function isValidExportData(data: ExportData): data is ExportData {
     return (
         data &&
         typeof data === 'object' &&
@@ -146,7 +146,7 @@ export function readImportFile(file: File): Promise<ExportData> {
                     reject(new Error('Invalid file format'));
                 }
             } catch (error) {
-                reject(new Error('Failed to parse JSON file'));
+                reject(new Error('Failed to parse JSON file: ' + error));
             }
         };
 

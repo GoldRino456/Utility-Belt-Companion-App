@@ -43,14 +43,13 @@ export function useGenerator(): UseGeneratorReturn {
       const availableHeroes = ownedProducts.flatMap(p => p.heroes);
       const availableModularSets = ownedProducts.flatMap(p => p.modularSets);
       const availableStandardSets = [...new Set(ownedProducts.flatMap(p => p.standardSets))];
-      const availableExpertSets = [...new Set(ownedProducts.flatMap(p => p.expertSets))];
 
       if (availableVillains.length === 0) {
         throw new Error('No villains available. Please add some products to your collection.');
       }
 
-      let filteredVillains = [...availableVillains];
-      let filteredHeroes = [...availableHeroes];
+      const filteredVillains = [...availableVillains];
+      const filteredHeroes = [...availableHeroes];
 
       if (config.excludeRecentlyPlayed) {
         // TODO: Implement exclusion logic based on recent games
@@ -62,7 +61,7 @@ export function useGenerator(): UseGeneratorReturn {
 
       // Determine difficulty
       let standardSet = config.difficulty.standardSet;
-      let expertSet = config.difficulty.expertSet;
+      const expertSet = config.difficulty.expertSet;
 
        // If random, pick from available owned sets
       if (standardSet === StandardSet.RANDOM && availableStandardSets.length > 0) {

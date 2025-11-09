@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { GameLog, GameResult } from '../types';
-import { getAllGames, getCollection } from '../utils/storage';
+import { getAllGames } from '../utils/storage';
 
 interface HeroStats {
     heroName: string;
@@ -37,7 +37,6 @@ interface UseDashboardReturn {
 
 export function useDashboard(): UseDashboardReturn {
     const [games, setGames] = useState<GameLog[]>([]);
-    const [ownedProductIds, setOwnedProductIds] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -49,12 +48,8 @@ export function useDashboard(): UseDashboardReturn {
         try {
             setLoading(true);
             setError(null);
-            const [gamesData, ownedIds] = await Promise.all([
-                getAllGames(),
-                (await getCollection()).flatMap(c => c.productId)
-            ]);
+            const gamesData = await getAllGames();
             setGames(gamesData);
-            setOwnedProductIds(ownedIds);
         } catch (err) {
             setError('Failed to load dashboard data');
             console.error(err);
@@ -88,14 +83,16 @@ export function useDashboard(): UseDashboardReturn {
                     .getTime() - new Date(a.dateTime).getTime()
             );
 
-            const mostRecentResult = sortedGames[0].result;
-            isWinStreak = mostRecentResult === GameResult.VICTORY;
+            if (sortedGames.length > 0) {
+                const mostRecentResult = sortedGames[0].result;
+                isWinStreak = mostRecentResult === GameResult.VICTORY;
 
-            for (const game of sortedGames) {
-                if (game.result === mostRecentResult) {
-                    currentStreak++;
-                } else {
-                    break;
+                for (const game of sortedGames) {
+                    if (game.result === mostRecentResult) {
+                        currentStreak++;
+                    } else {
+                        break;
+                    }
                 }
             }
         }
@@ -109,7 +106,7 @@ export function useDashboard(): UseDashboardReturn {
             isWinStreak,
             heroesSentOnMission
         };
-    }, [games, ownedProductIds]);
+    }, [games]);
 
     // Get recent games (last 5)
     const recentGames = useMemo(() => {
@@ -142,8 +139,8 @@ export function useDashboard(): UseDashboardReturn {
 
         // Filter heroes with at least 3 games and calculate win rates
         const heroStats = Array.from(heroMap.entries())
-            .filter(([_, stats]) => stats.total >= 3)
-            .map(([heroId, stats]): HeroStats => ({
+            .filter(([, stats]) => stats.total >= 3)
+            .map(([, stats]): HeroStats => ({
                 heroName: stats.heroName,
                 gamesPlayed: stats.total,
                 victories: stats.victories,

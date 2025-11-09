@@ -122,7 +122,7 @@ function GameLog() {
             setShowForm(false);
             setEditingGame(undefined);
         } catch (error) {
-            // Error is already handled in the hook
+            console.log("Failed to add/update game: " + error)
         }
     };
 

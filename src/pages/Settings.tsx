@@ -47,7 +47,7 @@ function Settings() {
       setDefaultExpertSet(expertSet);
       showMessage('success', 'Default difficulty updated');
     } catch (error) {
-      showMessage('error', 'Failed to update default difficulty');
+      showMessage('error', 'Failed to update default difficulty:' + error);
     }
   };
 

@@ -12,17 +12,12 @@ interface ScenarioDisplayProperties {
 
 function ScenarioDisplay({
   scenario,
-  config,
-    onRerollAll,
+  onRerollAll,
   onRerollHeroes,
   onRerollVillain,
   onRerollSets,
   onSaveToLog
 }: ScenarioDisplayProperties) {
-  const difficultyText = scenario.difficulty.expertSet !== 'None'
-    ? `${scenario.difficulty.standardSet} + ${scenario.difficulty.expertSet}`
-    : scenario.difficulty.standardSet;
-
     return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
       {/* Header */}

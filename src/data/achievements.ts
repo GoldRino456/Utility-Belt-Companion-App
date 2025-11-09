@@ -1,4 +1,4 @@
-import { Achievement, AchievementCategory, AchievementRequirement } from '../types';
+import { Achievement, AchievementCategory } from '../types';
 
 export const achievements: Achievement[] = [
     {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { GameLog, Player, Product, AspectType, StandardSet, ExpertSet, GameResult, Hero, Villain, GeneratedScenario } from '../../types';
+import { GameLog, Player, Product, AspectType, StandardSet, ExpertSet, GameResult, Villain, GeneratedScenario } from '../../types';
 import { getVillainByName, getHeroById } from '../../data/products';
 
 interface GameFormProperties {
@@ -55,7 +55,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
             setResult(existingGame.result);
             setNotes(existingGame.notes || '');
         }
-        else if (!!scenario) {
+        else if (scenario !== undefined) {
             setDateTime(new Date(Date.now() - tzOffset).toISOString().slice(0, 16));
             setVillain(scenario.villain);
             setStandardSet(scenario.difficulty.standardSet);
@@ -71,7 +71,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
         // Default to current date/time for new games
             setDateTime(new Date(Date.now() - tzOffset).toISOString().slice(0, 16));
         }
-    }, [existingGame]);
+    }, [existingGame, tzOffset, scenario]);
 
     useEffect(() => {
         const currentPlayers = [...players];
@@ -89,13 +89,13 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
         // Remove players
         setPlayers(currentPlayers.slice(0, playerCount));
         }
-    }, [playerCount]);
+    }, [playerCount, players]);
 
-    const updatePlayer = (index: number, field: keyof Player, value: any) => {
+    const updatePlayer = (index: number, field: keyof Player, value: string) => {
         const updated = [...players];
         if (field === 'hero') {
         // When updating hero, find the Hero object
-        const heroId = value as string;
+        const heroId = value;
         const heroData = getHeroById(heroId);
         updated[index] = { 
             ...updated[index], 
