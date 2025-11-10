@@ -1,3 +1,5 @@
+/// <reference types="vitest/config" />
+
 import { defineConfig } from 'vite';
 import plugin from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
@@ -7,5 +9,8 @@ export default defineConfig({
     plugins: [plugin(), tailwindcss()],
     server: {
         port: 56538,
+    },
+    test: {
+        environment: 'jsdom'
     }
 })
