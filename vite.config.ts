@@ -1,4 +1,5 @@
 /// <reference types="vitest/config" />
+/// <reference types ="vitest/browser" />
 
 import { defineConfig } from 'vite';
 import plugin from '@vitejs/plugin-react';
