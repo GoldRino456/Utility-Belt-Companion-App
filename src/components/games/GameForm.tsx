@@ -91,7 +91,7 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
         }
     }, [playerCount, players]);
 
-    const updatePlayer = (index: number, field: keyof Player, value: string) => {
+    const updatePlayer = (index: number, field: keyof Player, value: any) => {
         const updated = [...players];
         if (field === 'hero') {
         // When updating hero, find the Hero object
@@ -230,10 +230,11 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
 
                           {/* Hero */}
                           <div>
-                              <label className="block text-sm text-gray-600 mb-1">
+                              <label className="block text-sm text-gray-600 mb-1" htmlFor={`heroSelect${index}`}>
                                   Hero *
                               </label>
                               <select
+                                  id={`heroSelect${index}`}
                                   value={player.hero.id}
                                   onChange={(e) => updatePlayer(index, 'hero', e.target.value)}
                                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -302,10 +303,11 @@ function GameForm({ ownedProducts, allProducts, onSubmit, onCancel, existingGame
 
           {/* Villain */}
           <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="villainSelect">
                   Villain *
               </label>
               <select
+                  id= "villainSelect"
                   value={villain?.name}
                   onChange={(e) => setVillain(getVillainByName(e.target.value)?.villain)}
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
