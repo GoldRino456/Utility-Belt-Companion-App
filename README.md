@@ -1,73 +1,98 @@
-# React + TypeScript + Vite
+# The Utility Belt
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**The Utility Belt** is an unofficial companion app designed by [Ethan Eastwood](mailto:contact@ethaneastwood.dev) for the **Marvel Champions** LCG by Fantasy Flight Games. 
+Track and log games, manage your product collection, and generate random scenarios for Marvel Champions!
 
-Currently, two official plugins are available:
+Find it [here](https://goldrino456.github.io/Utility-Belt-Companion-App/)!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Utility Belt Dashboard](src/assets/screenshots/dashboard.png)
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📦 **Collection Manager** - Track which Marvel Champions products you own
+- 📝 **Game Log** - Record detailed game history including the scenario played, heroes and aspects used, and even if a hero's nemesis appeared
+- 🎲 **Random Scenario Generator** - Generate random scenarios from your owned content to shake up gameplay
+- 📊 **Statistics** - View win rates for the heroes you've played, villains you've faced, and see how high of a win streak you can get
+- 💾 **Data Management** - All data can be exported as a JSON file for easy backup or transfer and imported to pick up where you left off
+- 📱 **Mobile Friendly** - Fully responsive design works on desktop, tablet, and mobile
 
-## Expanding the ESLint configuration
+## Usage Guide
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Set Up Your Collection
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Navigate to the **Collection** page and mark which Marvel Champions products you own. This ensures that only your owned content appears first in dropdowns and is used for random scenario generation.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+![Collection List](src/assets/screenshots/collection.png)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Start Logging Games
+
+Go to the **Game Log** page to record your games:
+- Select date/time played
+- Add 1-4 players with their heroes and aspects
+- Choose the villain and difficulty (Standard/Expert sets)
+- Select additional modular encounter sets
+- Mark if any nemesis was encountered
+- Record the result (Victory/Defeat)
+
+![Game Log](src/assets/screenshots/log.png)
+
+![Add Game Form](src/assets/screenshots/addGame.png)
+
+### Generate Random Scenarios
+
+Visit the **Generator** page to create random scenarios:
+- Set player count
+- Choose difficulty preferences
+- Optionally randomize heroes, aspects, and the number of modular sets for your encounter
+- Exclude recently played content to ensure a brand new scenario
+
+![Scenario Generator](src/assets/screenshots/generator.png)
+
+### Statistics
+
+The **Dashboard** automatically tracks:
+- Overall win rate & games played (not counting in-progress games)
+- Hero win rates (minimum 3 games)
+- Villain win rates (minimum 1 game)
+- Number of heroes sent on mission (across all games in your log)
+
+### Manage Your Data
+
+In **Settings**, you can:
+- Export all data as a JSON backup
+- Import previously exported data (merge with existing data or completely replace)
+- Clear all data
+- Set default difficulty preferences for the scenario generator
+
+## Contributing & Reporting Issues
+
+**The Utility Belt** was written in Typescript using React.
+
+If you would like contribute to the project:
+- Report issues, leave feature requests, or notify us of new product releases in the [Issues](https://github.com/GoldRino456/Utility-Belt-Companion-App/issues) section of this project.
+- Fork the repository, make changes, then raise a pull request.
+
+To run the app locally, you will need to run the following commands to install dependencies and launch the project:
+```
+npm install
+npm run dev
+```
+You can access the project via web browser at `http://localhost:56538/Utility-Belt-Companion-App/`
+
+Before creating a pull request, please ensure your changes pass all unit tests and lint checks:
+```
+npm run lint
+npm run test
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Planned Updates
+- [ ] Improve scenario generation for modules with more advanced requirements such as Leaders from Civil War Campaign Box and Mojo Mania Scenario Pack.
+- [ ] Achievement system with auto-tracking
+- [ ] Campaign tracking for multi-scenario campaigns
+- [ ] Dark mode theme
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Disclaimer
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+This is a completely independent, unofficial, fan-made companion app and is not affiliated with, endorsed, or sponsored by Fantasy Flight Games or Marvel. 
+This project only serves as a supplement for an amazing card game. This software is completely free for all to use. 
+**Marvel Champions** and all related properties are trademarks of their respective owners.
