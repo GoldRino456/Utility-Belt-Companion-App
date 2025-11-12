@@ -39,7 +39,7 @@ function Dashboard() {
         if (diffDays < 7) return `${diffDays} days ago`;
         if (diffDays < 30) return `${Math.floor(diffDays / 7)} weeks ago`;
         return date.toLocaleDateString();
-    };
+    }; 
 
     return (
         <div className="space-y-6">
@@ -217,7 +217,7 @@ function Dashboard() {
                                     <div className="flex items-center gap-2 mb-2">
                                         <span className="font-semibold text-gray-900">{update.version}</span>
                                         <span className="text-sm text-gray-500">
-                                            {new Date(update.date).toLocaleDateString()}
+                                            {update.date}
                                         </span>
                                     </div>
                                     <ul className="space-y-1">

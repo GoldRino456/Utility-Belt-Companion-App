@@ -1,8 +1,18 @@
 {
   "updates": [
     {
+      "version": "0.9.2",
+      "date": "11/12/2025",
+      "changes": [
+        "Implemented exclude content from X number games in Generator.",
+        "Fixed routing and refreshing issue.",
+        "Updated readme to reflect current app state and features.",
+        "Added screenshots."
+      ]
+    },
+    {
       "version": "0.9.1",
-      "date": "2025-11-09",
+      "date": "11/09/2025",
       "changes": [
         "Beta release of The Utility Belt Companion App",
         "Added Core Set, Cycle 1 - 9 Hero Packs, Scenario Packs, and Campaign Boxes",
