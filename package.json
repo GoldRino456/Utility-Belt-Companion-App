@@ -2,7 +2,7 @@
   "homepage": "http://goldrino456.github.io/Utility-Belt-Companion-App",
   "name": "utility-belt",
   "private": true,
-  "version": "0.9.1",
+  "version": "0.9.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
