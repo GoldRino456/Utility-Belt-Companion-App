@@ -8,6 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [plugin(), tailwindcss()],
+    base: "/Utility-Belt-Companion-App/",
     server: {
         port: 56538,
     },
