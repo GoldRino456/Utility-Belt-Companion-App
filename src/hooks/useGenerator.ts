@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Product, Hero, AspectType, StandardSet, GeneratedScenario, GeneratorConfig } from '../types';
 import { products } from '../data/products';
-import { getCollection } from '../utils/storage';
+import { getCollection, getRecentGames } from '../utils/storage';
 
 interface UseGeneratorReturn {
   ownedProducts: Product[];
   allProducts: Product[];
-  generateScenario: (config: GeneratorConfig) => GeneratedScenario | null;
+  generateScenario: (config: GeneratorConfig) => Promise<GeneratedScenario | null>;
   loading: boolean;
   error: string | null;
 }
@@ -37,7 +37,7 @@ export function useGenerator(): UseGeneratorReturn {
 
   const ownedProducts = products.filter(p => ownedProductIds.includes(p.id));
 
-  const generateScenario = (config: GeneratorConfig): GeneratedScenario | null => {
+    const generateScenario = async (config: GeneratorConfig): Promise<GeneratedScenario | null> => {
     try {
       const availableVillains = ownedProducts.flatMap(p => p.villains);
       const availableHeroes = ownedProducts.flatMap(p => p.heroes);
@@ -48,16 +48,34 @@ export function useGenerator(): UseGeneratorReturn {
         throw new Error('No villains available. Please add some products to your collection.');
       }
 
-      const filteredVillains = [...availableVillains];
-      const filteredHeroes = [...availableHeroes];
+      let filteredVillains = [...availableVillains];
+      let filteredHeroes = [...availableHeroes];
 
-      if (config.excludeRecentlyPlayed) {
-        // TODO: Implement exclusion logic based on recent games
+      //Remove content from X number of recent games (if able)
+      if (config.excludeRecentlyPlayed && config.excludeCount > 0) {
+          const recentGames = await getRecentGames(config.excludeCount);
+          const recentVillains = new Set(recentGames.flatMap(g => g.villain.name));
+          const recentHeroes = new Set(recentGames.flatMap(g => g.players.flatMap(p => p.hero.id)));
+
+          const newFilteredHeroes = filteredHeroes.filter(h => !recentHeroes.has(h.id));
+          const newFilteredVillains = filteredVillains.filter(v => !recentVillains.has(v.name));
+
+          const minHeroesNeeded = config.randomizeHeroes ? config.playerCount : 0;
+
+          if (newFilteredVillains.length >= 1 && newFilteredHeroes.length >= minHeroesNeeded) {
+              filteredHeroes = newFilteredHeroes;
+              filteredVillains = newFilteredVillains;
+
+              console.log("FilteredHeroes: " + filteredHeroes.length);
+              console.log("FilteredVillains: " + filteredVillains.length);
+          }
       }
 
       // Select random villain
       const villain = filteredVillains[Math.floor(Math.random() * filteredVillains.length)];
-      const requiredSets = villain.requiredSets || [];
+        const requiredSets = villain.requiredSets || [];
+
+        console.log("Chosen: " + villain.name);
 
       // Determine difficulty
       let standardSet = config.difficulty.standardSet;

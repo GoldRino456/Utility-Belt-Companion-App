@@ -12,23 +12,24 @@ function Generator() {
   const [scenario, setScenario] = useState<GeneratedScenario | null>(null);
   const [currentConfig, setCurrentConfig] = useState<GeneratorConfig | null>(null);
 
-  const handleGenerate = (config: GeneratorConfig) => {
-    const generated = generateScenario(config);
+  const handleGenerate = async (config: GeneratorConfig) => {
+    const generated = await generateScenario(config);
+
     if (generated) {
       setScenario(generated);
       setCurrentConfig(config);
     }
   };
 
-  const handleRerollAll = () => {
+  const handleRerollAll = async () => {
     if (currentConfig) {
-      handleGenerate(currentConfig);
+      await handleGenerate(currentConfig);
     }
     };
 
-    const handleRerollHeroes = () => {
+    const handleRerollHeroes = async () => {
         if (currentConfig && scenario) {
-            const newScenario = generateScenario(currentConfig);
+            const newScenario = await generateScenario(currentConfig);
             if (newScenario) {
                 setScenario({
                     ...scenario,
@@ -38,10 +39,10 @@ function Generator() {
         }
     }
 
-  const handleRerollVillain = () => {
+  const handleRerollVillain = async () => {
     if (currentConfig) {
       // Generate new scenario with same config (will get different villain due to randomness)
-      const newScenario = generateScenario(currentConfig);
+      const newScenario = await generateScenario(currentConfig);
       if (newScenario) {
 
           let additionalSets: string[] = scenario?.additionalSets || newScenario.additionalSets;
@@ -63,10 +64,10 @@ function Generator() {
     }
   };
 
-  const handleRerollSets = () => {
+  const handleRerollSets = async () => {
     if (currentConfig && scenario) {
       // Generate new scenario to get different modular sets
-      const newScenario = generateScenario(currentConfig);
+      const newScenario = await generateScenario(currentConfig);
       if (newScenario) {
         // Keep same villain and heroes, just change modular sets
         setScenario({

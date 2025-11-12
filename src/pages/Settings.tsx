@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { StandardSet, ExpertSet } from '../types';
+import updatesInfo from '../data/recentUpdateInfo.json';
 import {
   exportAllData,
   downloadExportFile,
@@ -298,16 +299,14 @@ function Settings() {
             <div className="space-y-4">
               <div>
                 <h4 className="text-2xl font-bold text-red-600 mb-1">
-                  Marvel Champions Companion
+                  The Utility Belt
                 </h4>
-                <p className="text-sm text-gray-600">Version 1.0.0</p>
+                <p className="text-sm text-gray-600"> {updatesInfo.updates[0].version} </p>
               </div>
 
               <div className="pt-4 border-t border-gray-200">
                 <p className="text-sm text-gray-700 leading-relaxed">
-                  An unofficial companion app for tracking games, managing your collection, 
-                  and generating random scenarios for Marvel Champions: The Card Game by 
-                  Fantasy Flight Games.
+                  An unofficial companion app for the Marvel Champions LCG by Fantasy Flight Games.
                 </p>
               </div>
 
