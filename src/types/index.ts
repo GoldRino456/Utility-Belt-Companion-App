@@ -73,6 +73,7 @@ export interface Hero {
 export interface Villain {
     name: string;
     requiredSets: string[];
+    requiredRandomSets?: { numRand: number, sets: string[] };
     recommendedSets?: string[];
 }
 

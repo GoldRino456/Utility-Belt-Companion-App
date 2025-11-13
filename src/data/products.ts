@@ -995,22 +995,50 @@ export const products: Product[] = [
             {
                 name: 'MaGog',
                 requiredSets: ['Magog'],
-                recommendedSets: [
-                    'Fantasy'
-                ]
+                requiredRandomSets: {
+                    numRand: 1,
+                    sets: [
+                        'Crime',
+                        'Fantasy',
+                        'Horror',
+                        'Sci-Fi',
+                        'Sitcom',
+                        'Western',
+                        'Longshot'
+                    ]
+                }
             },
             {
                 name: 'Spiral',
-                requiredSets: ['Spiral', 'Crime', 'Horror', 'Sci-Fi'],
-                recommendedSets: []
+                requiredSets: ['Spiral'],
+                requiredRandomSets: {
+                    numRand: 3,
+                    sets: [
+                        'Crime',
+                        'Fantasy',
+                        'Horror',
+                        'Sci-Fi',
+                        'Sitcom',
+                        'Western',
+                        'Longshot'
+                    ]
+                }
             },
             {
                 name: 'Mojo',
-                requiredSets: ['Spiral'],
-                recommendedSets: [
-                    'Sitcom',
-                    'Western'
-                ]
+                requiredSets: ['Mojo'],
+                requiredRandomSets: {
+                    numRand: 2,
+                    sets: [
+                        'Crime',
+                        'Fantasy',
+                        'Horror',
+                        'Sci-Fi',
+                        'Sitcom',
+                        'Western',
+                        'Longshot'
+                    ]
+                }
             }
         ],
         modularSets: [

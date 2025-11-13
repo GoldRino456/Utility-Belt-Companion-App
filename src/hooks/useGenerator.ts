@@ -73,7 +73,7 @@ export function useGenerator(): UseGeneratorReturn {
 
       // Select random villain
       const villain = filteredVillains[Math.floor(Math.random() * filteredVillains.length)];
-        const requiredSets = villain.requiredSets || [];
+      let requiredSets = villain.requiredSets || [];
 
         console.log("Chosen: " + villain.name);
 
@@ -81,14 +81,29 @@ export function useGenerator(): UseGeneratorReturn {
       let standardSet = config.difficulty.standardSet;
       const expertSet = config.difficulty.expertSet;
 
-       // If random, pick from available owned sets
+       // If random standard set, pick from available owned sets
       if (standardSet === StandardSet.RANDOM && availableStandardSets.length > 0) {
-        // Random selection logic - prefer Standard
+        // Random selection logic - prefer Standard I
         const preferredSets = availableStandardSets.filter(s => s !== StandardSet.RANDOM);
         if (preferredSets.length > 0) {
           standardSet = preferredSets[Math.floor(Math.random() * preferredSets.length)];
         }
-      }
+        }
+
+        //If villain has required random sets, pull from that pool
+        if (villain.requiredRandomSets !== undefined
+            && villain.requiredRandomSets.sets.length >= villain.requiredRandomSets.numRand) {
+
+            let randomSets = villain.requiredRandomSets.sets;
+            let numSets = villain.requiredRandomSets.numRand;
+
+            for (let i = 0; i < numSets; i++) {
+
+                const randSet = randomSets[Math.floor(Math.random() * randomSets.length)];
+                requiredSets = [...requiredSets, randSet];
+                randomSets = randomSets.filter(s => s !== randSet);
+            }
+        }
 
       // Select additional modular sets
       const availableAdditionalSets = availableModularSets.filter(
