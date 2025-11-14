@@ -12,7 +12,7 @@ import {
 } from '../utils/storage';
 
 function Settings() {
-  const [defaultStandardSet, setDefaultStandardSet] = useState<StandardSet>(StandardSet.STANDARD_III);
+  const [defaultStandardSet, setDefaultStandardSet] = useState<StandardSet>(StandardSet.STANDARD);
   const [defaultExpertSet, setDefaultExpertSet] = useState<ExpertSet>(ExpertSet.NONE);
   const [showClearModal, setShowClearModal] = useState(false);
   const [clearConfirmText, setClearConfirmText] = useState('');

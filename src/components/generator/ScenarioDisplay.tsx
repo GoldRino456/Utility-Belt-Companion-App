@@ -105,10 +105,12 @@ function ScenarioDisplay({
                           Player {idx + 1}: {player.hero.name} 
                           <span className="px-1 text-sm font-semibold text-gray-400">({player.hero.alterEgo})</span>
                   </div>
-                      <span className="px-2 font-semibold text-gray-500">
-                          Aspects: 
-                      </span>
-                  {player.aspects.sort().map((aspect, aIdx) => (
+                      {player.aspects && player.aspects.length > 0
+                          && <span className="px-2 font-semibold text-gray-500">
+                              Aspects:
+                          </span>}
+                      {player.aspects && player.aspects.length > 0
+                          && player.aspects.sort().map((aspect, aIdx) => (
                       <span key={aIdx} className="px-1">
                           <span
                               className={`px-2 py-0.5 rounded text-xs ${GetColorMapForAspect(aspect)}`}>

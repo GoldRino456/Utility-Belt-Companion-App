@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GeneratorConfig, StandardSet, ExpertSet, Product } from '../../types';
+import { getSettings } from '../../utils/storage';
 
 interface GeneratorFormProperties {
   ownedProducts: Product[];
@@ -25,7 +26,29 @@ function GeneratorForm({ ownedProducts, onGenerate }: GeneratorFormProperties) {
   const ownedExpertSets = [
     ExpertSet.NONE,
     ...new Set(ownedProducts.flatMap(p => p.expertSets))
-  ];
+    ];
+
+    useEffect(() => {
+        async function applyDifficultySettings() {
+            try {
+                const appSettings = await getSettings();
+
+                //Apply Default Settings if able
+                if (ownedStandardSets.includes(appSettings.defaultDifficulty.standardSet)) {
+                    setStandardSet(appSettings.defaultDifficulty.standardSet);
+                }
+
+                if (ownedExpertSets.includes(appSettings.defaultDifficulty.expertSet)) {
+                    setExpertSet(appSettings.defaultDifficulty.expertSet)
+                }
+            }
+            catch (error) {
+                console.log("Unable to apply difficulty settings. Assigning default values: " + error);
+            }
+        }
+
+        applyDifficultySettings();
+    }) 
 
   const handleGenerate = () => {
     const config: GeneratorConfig = {
@@ -188,7 +211,7 @@ function GeneratorForm({ ownedProducts, onGenerate }: GeneratorFormProperties) {
               Randomize Aspects
             </span>
             <p className="text-xs text-gray-500">
-              Select random aspect(s) instead of using the aspect(s) in the hero's prebuilt deck.
+              Select random aspect(s) for each hero.
             </p>
           </div>
         </label>

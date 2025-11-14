@@ -152,8 +152,8 @@ export function useGenerator(): UseGeneratorReturn {
             const shuffledAspects = [...availableAspects].sort(() => Math.random() - 0.5);
             aspects = shuffledAspects.slice(0, Math.min(aspectCount, availableAspects.length));
           } else {
-            // Use prebuilt aspects
-            aspects = hero.prebuiltAspects || [AspectType.BASIC];
+            // Player Will Assign in Log
+            aspects = [];
           }
 
           return {

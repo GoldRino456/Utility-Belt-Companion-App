@@ -10,7 +10,7 @@ function Generator() {
   const { ownedProducts, generateScenario, loading, error } = useGenerator();
   
   const [scenario, setScenario] = useState<GeneratedScenario | null>(null);
-  const [currentConfig, setCurrentConfig] = useState<GeneratorConfig | null>(null);
+    const [currentConfig, setCurrentConfig] = useState<GeneratorConfig | null>(null);
 
   const handleGenerate = async (config: GeneratorConfig) => {
     const generated = await generateScenario(config);
