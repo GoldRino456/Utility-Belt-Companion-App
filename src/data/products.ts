@@ -1,4 +1,6 @@
 import { Product, ProductType, AspectType, StandardSet, ExpertSet, Hero, Villain } from '../types';
+import { MojoManiaModule } from '../data/generatorModules';
+
 
 export const products: Product[] = [
     // ============================================================================
@@ -995,50 +997,17 @@ export const products: Product[] = [
             {
                 name: 'MaGog',
                 requiredSets: ['Magog'],
-                requiredRandomSets: {
-                    numRand: 1,
-                    sets: [
-                        'Crime',
-                        'Fantasy',
-                        'Horror',
-                        'Sci-Fi',
-                        'Sitcom',
-                        'Western',
-                        'Longshot'
-                    ]
-                }
+                generatorModule: MojoManiaModule
             },
             {
                 name: 'Spiral',
                 requiredSets: ['Spiral'],
-                requiredRandomSets: {
-                    numRand: 3,
-                    sets: [
-                        'Crime',
-                        'Fantasy',
-                        'Horror',
-                        'Sci-Fi',
-                        'Sitcom',
-                        'Western',
-                        'Longshot'
-                    ]
-                }
+                generatorModule: MojoManiaModule
             },
             {
                 name: 'Mojo',
                 requiredSets: ['Mojo'],
-                requiredRandomSets: {
-                    numRand: 2,
-                    sets: [
-                        'Crime',
-                        'Fantasy',
-                        'Horror',
-                        'Sci-Fi',
-                        'Sitcom',
-                        'Western',
-                        'Longshot'
-                    ]
-                }
+                generatorModule: MojoManiaModule
             }
         ],
         modularSets: [

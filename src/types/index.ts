@@ -1,3 +1,5 @@
+import { GeneratorModule } from '../data/generatorModules';
+
 export { GetColorMapForAspect } from '../types/colorMaps';
 
 // ============================================================================
@@ -73,8 +75,8 @@ export interface Hero {
 export interface Villain {
     name: string;
     requiredSets: string[];
-    requiredRandomSets?: { numRand: number, sets: string[] };
     recommendedSets?: string[];
+    generatorModule?: GeneratorModule;
 }
 
 export interface Product {

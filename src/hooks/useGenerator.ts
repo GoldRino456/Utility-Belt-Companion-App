@@ -74,6 +74,7 @@ export function useGenerator(): UseGeneratorReturn {
       // Select random villain
       const villain = filteredVillains[Math.floor(Math.random() * filteredVillains.length)];
       let requiredSets = villain.requiredSets || [];
+      let additionalSets: string[] = [];
 
         console.log("Chosen: " + villain.name);
 
@@ -90,39 +91,33 @@ export function useGenerator(): UseGeneratorReturn {
         }
         }
 
-        //If villain has required random sets, pull from that pool
-        if (villain.requiredRandomSets !== undefined
-            && villain.requiredRandomSets.sets.length >= villain.requiredRandomSets.numRand) {
+        //Does the villain require a module for proper configuration?
+        if (config.matchEncounterSetNumber && villain.generatorModule) {
+            const moduleValues = villain.generatorModule.generateScenario(villain, config.playerCount);
 
-            let randomSets = villain.requiredRandomSets.sets;
-            let numSets = villain.requiredRandomSets.numRand;
-
-            for (let i = 0; i < numSets; i++) {
-
-                const randSet = randomSets[Math.floor(Math.random() * randomSets.length)];
-                requiredSets = [...requiredSets, randSet];
-                randomSets = randomSets.filter(s => s !== randSet);
-            }
-        }
-
-      // Select additional modular sets
-      const availableAdditionalSets = availableModularSets.filter(
-        set => !requiredSets.includes(set)
-      );
-      
-      const additionalSets: string[] = [];
-      const shuffled = [...availableAdditionalSets].sort(() => Math.random() - 0.5);
-      let numAdditionalSets = 0;
-
-        if (config.matchEncounterSetNumber) {
-            numAdditionalSets = villain.recommendedSets ? villain.recommendedSets.length : 0;
+            requiredSets = moduleValues.requiredSets;
+            additionalSets = moduleValues.recommendedSets;
         }
         else {
-            numAdditionalSets = config.additionalSetCount;
-        }
+            const availableAdditionalSets = availableModularSets.filter(
+                set => !requiredSets.includes(set)
+            );
 
-        for (let i = 0; i < Math.min(numAdditionalSets, shuffled.length); i++) {
-            additionalSets.push(shuffled[i]);
+            const shuffled = [...availableAdditionalSets].sort(() => Math.random() - 0.5);
+            let numAdditionalSets = 0;
+
+            //Match the number of recommended sets?
+            if (config.matchEncounterSetNumber) {
+                numAdditionalSets = villain.recommendedSets ? villain.recommendedSets.length : 0;
+            }
+            else {
+                //User specified value of sets
+                numAdditionalSets = config.additionalSetCount;
+            }
+
+            for (let i = 0; i < Math.min(numAdditionalSets, shuffled.length); i++) {
+                additionalSets.push(shuffled[i]);
+            }
         }
 
       // Generate hero lineup if requested
